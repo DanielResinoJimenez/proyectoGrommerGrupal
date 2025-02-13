@@ -1,16 +1,19 @@
 <?php
 
-class Servicios extends Basedatos {
+class Servicios extends Basedatos
+{
 
     private $table;
     private $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->table = "SERVICIOS";
         $this->conexion = $this->getConexion();
     }
 
-    public function newServicio($cod, $nombre, $precio, $descripcion){
+    public function newServicio($cod, $nombre, $precio, $descripcion)
+    {
         try {
             $sql = "INSERT INTO " . $this->table . " (cod, nombre, precio, descripcion) VALUES (?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
@@ -24,7 +27,8 @@ class Servicios extends Basedatos {
         }
     }
 
-    public function updateServicio($cod, $precio){
+    public function updateServicio($cod, $precio)
+    {
         try {
             $sql = "UPDATE " . $this->table . " SET precio = ? WHERE cod = ?";
             $sentencia = $this->conexion->prepare($sql);
@@ -36,12 +40,13 @@ class Servicios extends Basedatos {
         }
     }
 
-    public function numCod($belleza){
-        try{
-            $sql;
-            if($belleza){
+    public function numCod($belleza)
+    {
+        try {
+            $sql = "";
+            if ($belleza) {
                 $sql = "SELECT MAX(substr(codigo,5))+1 as 'SIGUIENTE' FROM SERVICIOS WHERE CODIGO LIKE 'SVBE%' ";
-            }else{
+            } else {
                 $sql = "SELECT MAX(substr(codigo,5))+1 as 'SIGUIENTE' FROM SERVICIOS WHERE CODIGO LIKE 'SVNUT%'";
             }
             $sentencia = $this->conexion->prepare($sql);
@@ -55,8 +60,4 @@ class Servicios extends Basedatos {
             return "ERROR AL Obtener el numero del codigo.<br>" . $e->getMessage();
         }
     }
-
 }
-
-
-?>
