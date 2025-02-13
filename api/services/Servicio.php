@@ -5,12 +5,14 @@ class Servicio extends Basedatos {
     private $table;
     private $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->table = "SERVICIOS";
         $this->conexion = $this->getConexion();
     }
 
-    public function newServicio($cod, $nombre, $precio, $descripcion){
+    public function newServicio($cod, $nombre, $precio, $descripcion)
+    {
         try {
             $sql = "INSERT INTO " . $this->table . " (codigo, nombre, precio, descripcion) VALUES (?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
@@ -25,7 +27,8 @@ class Servicio extends Basedatos {
         }
     }
 
-    public function updateServicio($cod, $precio){
+    public function updateServicio($cod, $precio)
+    {
         try {
             $sql = "UPDATE " . $this->table . " SET precio = ? WHERE codigo = ?";
             $sentencia = $this->conexion->prepare($sql);
@@ -57,8 +60,4 @@ class Servicio extends Basedatos {
             return "ERROR AL Obtener el numero del codigo.<br>" . $e->getMessage();
         }
     }
-
 }
-
-
-?>

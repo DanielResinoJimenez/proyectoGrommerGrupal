@@ -24,7 +24,7 @@ abstract class Basedatos
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->conexion;
         } catch (PDOException $e) {
-            $this->mensajeerror = $e->getMessage();
+            $this->mensajeError = $e->getMessage();
         }
     }
 
