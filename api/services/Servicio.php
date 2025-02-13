@@ -1,6 +1,6 @@
 <?php
 
-class Servicios extends Basedatos {
+class Servicio extends Basedatos {
 
     private $table;
     private $conexion;
@@ -12,13 +12,14 @@ class Servicios extends Basedatos {
 
     public function newServicio($cod, $nombre, $precio, $descripcion){
         try {
-            $sql = "INSERT INTO " . $this->table . " (cod, nombre, precio, descripcion) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO " . $this->table . " (codigo, nombre, precio, descripcion) VALUES (?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $cod);
             $sentencia->bindParam(2, $nombre);
             $sentencia->bindParam(3, $precio);
             $sentencia->bindParam(4, $descripcion);
             $sentencia->execute();
+            return "INSERTADO CON EXITO";
         } catch (PDOException $e) {
             return "ERROR AL ingresar.<br>" . $e->getMessage();
         }
@@ -26,11 +27,12 @@ class Servicios extends Basedatos {
 
     public function updateServicio($cod, $precio){
         try {
-            $sql = "UPDATE " . $this->table . " SET precio = ? WHERE cod = ?";
+            $sql = "UPDATE " . $this->table . " SET precio = ? WHERE codigo = ?";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $precio);
             $sentencia->bindParam(2, $cod);
             $sentencia->execute();
+            return "ACTUALIZADO CON EXITO";
         } catch (PDOException $e) {
             return "ERROR AL Actualizar.<br>" . $e->getMessage();
         }
@@ -38,11 +40,11 @@ class Servicios extends Basedatos {
 
     public function numCod($belleza){
         try{
-            $sql;
-            if($belleza){
+            $sql = "";
+            if($belleza == "true"){
                 $sql = "SELECT MAX(substr(codigo,5))+1 as 'SIGUIENTE' FROM SERVICIOS WHERE CODIGO LIKE 'SVBE%' ";
             }else{
-                $sql = "SELECT MAX(substr(codigo,5))+1 as 'SIGUIENTE' FROM SERVICIOS WHERE CODIGO LIKE 'SVNUT%'";
+                $sql = "SELECT MAX(substr(codigo,6))+1 as 'SIGUIENTE' FROM SERVICIOS WHERE CODIGO LIKE 'SVNUT%'";
             }
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->execute();
