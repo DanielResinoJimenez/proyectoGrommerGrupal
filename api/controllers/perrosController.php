@@ -16,8 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    if (isset($_POST['chip'])) {
-        $dep->deletePerro(($_POST['chip']));
+
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($data['chip'])) {
+        $dep->deletePerro(($data['chip']));
         echo json_encode(["message" => "Perro eliminado correctamente", "status" => "success"]);
         exit();
     } else {
