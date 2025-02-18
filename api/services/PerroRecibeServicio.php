@@ -12,7 +12,32 @@
         }
     
         // TODOS LOS SERVICIOS REALIZADOS
+        public function getPerroRecibeServicio()
+        {
+            try {
+                $sql = "SELECT * FROM PERRO_RECIBE_SERVICIO";
+                $sentencia = $this->conexion->prepare($sql);
+                $sentencia->execute();
+                $perro_recibe_servicio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                return $perro_recibe_servicio;
+            } catch (PDOException $e) {
+                return "ERROR AL obtener.<br>" . $e->getMessage();
+            }
+        }
+        
         // TODOS LOS SERVICIOS REALIZADOS POR UN EMPLEADO
+        public function getServiciosPorEmpleado($dni)
+        {
+            try {
+                $sql = "SELECT * FROM PERRO_RECI WHERE Dni = '" . $dni . "'";
+                $sentencia = $this->conexion->prepare($sql);
+                $sentencia->execute();
+                $perro_recibe_servicio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                return $perro_recibe_servicio;
+            } catch (PDOException $e) {
+                return "ERROR AL obtener.<br>" . $e->getMessage();
+            }
+        }
 
         // BORRAR SERVICIO REALIZADO
         public function deleteServiRealizado($id)
@@ -36,10 +61,4 @@
             $stmt->bindParam(':incidencias', $incidencias);
             return $stmt->execute();
         }
-
-
-
-    }
-
-
-?>
+}

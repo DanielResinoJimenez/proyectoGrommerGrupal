@@ -6,6 +6,18 @@ $dep = new PerroRecibeServicio();
 
 @header("Content-type: application/json");
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $action = $_GET['action'];
+    if ($action === 'listarPerroRecibeServicio') {
+        $listaServ = $prs->getPerroRecibeServicio();
+        echo json_encode($listaServ);
+        exit();
+    } else if ($action === 'listarServicioPorEmpleado' && isset($_GET['dni'])) {
+        $listaEmpServ = $prs->getServiciosPorEmpleado($_GET['dni']);
+        echo json_encode($listaEmpServ);
+        exit();
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $input = json_decode(file_get_contents('php://input'), true);
