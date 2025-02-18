@@ -7,7 +7,7 @@
     
         public function __construct()
         {
-            $this->table = "PERRO_RECIBE_SERVICIOS";
+            $this->table = "PERRO_RECIBE_SERVICIO";
             $this->conexion = $this->getConexion();
         }
     
@@ -17,7 +17,7 @@
         // BORRAR SERVICIO REALIZADO
         public function deleteServiRealizado($id)
         {
-            $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+            $sql = "DELETE FROM " . $this->table . " WHERE Sr_Cod = :id";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':id', $id);
             return $stmt->execute();
@@ -26,7 +26,7 @@
         // INSERTAR NUEVO SERVICIO REALIZADO
         public function newServiRealizado($perro_id, $servicio_id, $fecha, $empleado_id, $precioFinal, $incidencias)
         {
-            $sql = "INSERT INTO " . $this->table . " (perro_id, servicio_id, fecha, empleado_id, precio_final, incidencias) VALUES (:perro_id, :servicio_id, :fecha, :empleado_id, :precioFinal, :incidencias)";
+            $sql = "INSERT INTO " . $this->table . " (ID_Perro, Cod_Servicio, Fecha, Dni, Precio_Final, Incidencias) VALUES (:perro_id, :servicio_id, :fecha, :empleado_id, :precioFinal, :incidencias)";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindParam(':perro_id', $perro_id);
             $stmt->bindParam(':servicio_id', $servicio_id);

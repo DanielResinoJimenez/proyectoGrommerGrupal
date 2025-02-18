@@ -29,7 +29,7 @@ class Empleados extends Basedatos
             // Cifrar password
             $passwordCifrada = password_hash($password, PASSWORD_BCRYPT);
 
-            $sql = "INSERT INTO " . $this->table . " (DNI, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, CP, Poblacion, Provincia, Telefono, Profesion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO " . $this->table . " (DNI, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, CP, Poblacion, Provincia, Tlfno, Profesion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $dni);
             $sentencia->bindParam(2, $email);
