@@ -9,11 +9,11 @@ $dep = new PerroRecibeServicio();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $action = $_GET['action'];
     if ($action === 'listarPerroRecibeServicio') {
-        $listaServ = $prs->getPerroRecibeServicio();
+        $listaServ = $dep->getPerroRecibeServicio();
         echo json_encode($listaServ);
         exit();
     } else if ($action === 'listarServicioPorEmpleado' && isset($_GET['dni'])) {
-        $listaEmpServ = $prs->getServiciosPorEmpleado($_GET['dni']);
+        $listaEmpServ = $dep->getServiciosPorEmpleado($_GET['dni']);
         echo json_encode($listaEmpServ);
         exit();
     }
