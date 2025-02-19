@@ -3,6 +3,7 @@
 define('CONTROLADOR_DEFECTO', 'ClientesUso');
 define('ACCION_DEFECTO', 'showClientes');
 
+<<<<<<< HEAD
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,6 +16,17 @@ if (!isset($_GET['controller']) || !isset($_GET['action'])) {
 }
 if ($_GET['controller'] == 'UsersController') header('Location: ./index.php');
 // }
+=======
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    // redirige a la lista de libros
+    if (!isset($_GET['controller']) || !isset($_GET['action'])) {
+        header('Location: index.php?controller=LibrosController&action=listar');
+        exit();
+    }
+    if($_GET['controller']=='UsersController') header('Location: ./index.php');
+>>>>>>> 93807cad763b330bfdaa71cf9975c14add04aec1
 
 // Obtén el controlador y la acción desde los parámetros de la URL
 $controller = isset($_GET['controller']) ? $_GET['controller'] : CONTROLADOR_DEFECTO;
