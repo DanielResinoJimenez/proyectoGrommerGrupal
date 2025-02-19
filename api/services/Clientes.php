@@ -1,5 +1,5 @@
 <?php
-include_once '../bd.php';
+include_once __DIR__ .'/../bd.php';
 
 class Clientes extends Basedatos
 {
