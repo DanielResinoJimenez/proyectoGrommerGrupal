@@ -1,5 +1,8 @@
 <?php
+// Incluir la clase Basedatos
+require_once '../bd.php';
 
+// Clase Empleados 
 class Empleados extends Basedatos
 {
     private $table;
@@ -11,11 +14,12 @@ class Empleados extends Basedatos
         $this->conexion = $this->getConexion();
     }
 
-    public function newEmpleado($dni, $email, $password, $rol, $nombre, $apellido1, $apellido2, $calle, $numero, $cp, $poblacion, $provincia, $telefono, $profesion)
+    // Función para crear un nuevo empleado
+    public function newEmpleado($dni, $email, $password, $rol, $nombre, $apellido1, $apellido2, $calle, $numero, $cp, $poblacion, $provincia, $tlfno, $profesion)
     {
         try {
             // Comprobaciones
-            if (empty($dni) || empty($email) || empty($password) || empty($rol) || empty($nombre) || empty($apellido1) || empty($apellido2) || empty($calle) || empty($numero) || empty($cp) || empty($poblacion) || empty($provincia) || empty($telefono) || empty($profesion)) {
+            if (empty($dni) || empty($email) || empty($password) || empty($rol) || empty($nombre) || empty($apellido1) || empty($apellido2) || empty($calle) || empty($numero) || empty($cp) || empty($poblacion) || empty($provincia) || empty($tlfno) || empty($profesion)) {
                 return "Faltan datos";
             }
 
@@ -29,7 +33,7 @@ class Empleados extends Basedatos
             // Cifrar password
             $passwordCifrada = password_hash($password, PASSWORD_BCRYPT);
 
-            $sql = "INSERT INTO " . $this->table . " (DNI, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, CP, Poblacion, Provincia, Telefono, Profesion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO " . $this->table . " (DNI, Email, Password, Rol, Nombre, Apellido1, Apellido2, Calle, Numero, CP, Poblacion, Provincia, tlfno, Profesion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $dni);
             $sentencia->bindParam(2, $email);
@@ -43,7 +47,7 @@ class Empleados extends Basedatos
             $sentencia->bindParam(10, $cp);
             $sentencia->bindParam(11, $poblacion);
             $sentencia->bindParam(12, $provincia);
-            $sentencia->bindParam(13, $telefono);
+            $sentencia->bindParam(13, $tlfno);
             $sentencia->bindParam(14, $profesion);
             $sentencia->execute();
             return "Empleado DNI: " . $dni . " insertado correctamente";
@@ -52,6 +56,7 @@ class Empleados extends Basedatos
         }
     }
 
+    // Función para borrar un empleado
     public function deleteEmpleado($dni)
     {
         try {
@@ -72,6 +77,7 @@ class Empleados extends Basedatos
         }
     }
 
+    // Función para obtener todos los empleados
     public function getEmpleados()
     {
         try {
@@ -83,6 +89,7 @@ class Empleados extends Basedatos
         }
     }
 
+    // Función para obtener un empleado por DNI
     public function getEmpleadoByDNI($dni)
     {
         try {
