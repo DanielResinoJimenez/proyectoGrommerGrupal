@@ -6,15 +6,12 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    // Verifica si el token está en la sesión
-    if (isset($_SESSION['token']) && !empty($_SESSION['token'])) {
-        // Si existe un token, redirige a la lista de libros
-        if (!isset($_GET['controller']) || !isset($_GET['action'])) {
-            header('Location: index.php?controller=LibrosController&action=listar');
-            exit();
-        }
-        if($_GET['controller']=='UsersController') header('Location: ./index.php');
+    // redirige a la lista de libros
+    if (!isset($_GET['controller']) || !isset($_GET['action'])) {
+        header('Location: index.php?controller=LibrosController&action=listar');
+        exit();
     }
+    if($_GET['controller']=='UsersController') header('Location: ./index.php');
 
     // Obtén el controlador y la acción desde los parámetros de la URL
     $controller = isset($_GET['controller']) ? $_GET['controller'] : CONTROLADOR_DEFECTO;

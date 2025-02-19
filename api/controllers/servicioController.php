@@ -6,6 +6,19 @@ $dep = new Servicio();
 
 @header("Content-type: application/json");
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $services = $dep->getAllServicios();
+    if ($services) {
+        header("HTTP/1.1 200 OK");
+        echo json_encode($services);
+    } else {
+        header("HTTP/1.1 500 Internal Server Error");
+        echo json_encode(["message" => "Error al obtener los servicios"]);
+    }
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cod = "";
     if (isset($_POST['belleza']) && isset($_POST['nombre']) && isset($_POST['precio']) && isset($_POST['descripcion'])) {
