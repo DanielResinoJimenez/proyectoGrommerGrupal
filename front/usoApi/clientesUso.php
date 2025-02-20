@@ -37,7 +37,7 @@ class ClientesUso
             $clientesLista = $data;
         }
         curl_close($ch);
-        // print_r($clientesLista);
+
 
         $this->view->getAllClientes($clientesLista);
     }
