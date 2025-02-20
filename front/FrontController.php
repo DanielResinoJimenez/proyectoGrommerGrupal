@@ -1,14 +1,14 @@
 <?php
 // Define las constantes para los controladores y las acciones predeterminadas
-define('CONTROLADOR_DEFECTO', 'ClientesUso');
-define('ACCION_DEFECTO', 'showClientes');
+define('CONTROLADOR_DEFECTO', 'HomeUso');
+define('ACCION_DEFECTO', 'showHome');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // redirige a la lista de libros
 if (!isset($_GET['controller']) || !isset($_GET['action'])) {
-    header('Location: index.php?controller=clientesUso&action=showClientes');
+    header('Location: index.php?controller=homeUso&action=showHome');
     exit();
 }
 if ($_GET['controller'] == 'UsersController') header('Location: ./index.php');
