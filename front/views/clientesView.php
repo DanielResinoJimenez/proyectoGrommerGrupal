@@ -1,18 +1,11 @@
-<!-- <div class="container mx-auto p-4 w-[90%]">
-
-    <h1 class="text-2xl font-bold mb-4">Gestión de Clientes</h1> -->
-
-<!-- Botón para mostrar el modal -->
-<!-- <button onclick="toggleModal()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Crear Cliente</button> -->
 <?php
 class ClientesView
 {
-    // <?php
-    function createCliente()
+    public function showForm()
     {
 ?>
         <!-- Modal oculto inicialmente -->
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center ">
             <div class="bg-white p-4 rounded shadow-lg w-1/2">
                 <h2 class="text-xl font-bold mb-2">Crear Cliente</h2>
                 <form id="crearClienteForm" class="space-y-4" method="POST" action="">
@@ -49,12 +42,15 @@ class ClientesView
         </div>
     <?php
     }
-    function getAllClientes($clientesLista)
+
+
+    public function getAllClientes($clientesLista)
     {
     ?>
         <!-- Lista de clientes -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
+            <a href="http://localhost/gromer/front/index.php?controller=clientesUso&action=showFormController"><button>Crear Cliente</button></a>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
                     <tr>
@@ -69,16 +65,8 @@ class ClientesView
                 </thead>
                 <tbody id="clientesLista" class="bg-white divide-y divide-gray-200">
                     <?php
-                    // Incluir el archivo de servicios
-                    // require_once __DIR__ . '../../api/services/Clientes.php';
 
-                    // Crear una instancia de la clase Clientes
-                    // $clientes = new Clientes();
-
-                    // Obtener la lista de clientes
-                    // $clientesLista = $clientes->getClientes();
-
-                    // Iterar sobre la lista de clientes y generar las filas de la tabla
+                    if (is_array($clientesLista)) {
                     foreach ($clientesLista as $cliente) {
                         echo "<tr>";
                         echo "<td class='px-4 py-2 whitespace-nowrap'>{$cliente['Dni']}</td>";
@@ -103,34 +91,4 @@ class ClientesView
 <?php
     }
 }
-?>
-// <!-- Modal para mostrar mensajes -->
-// <!-- <div id="messageModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center <?php echo isset($_POST['dni']) ? '' : 'hidden'; ?>">
-//             <div class="bg-white p-4 rounded shadow-lg w-1/2">
-//                 <h2 class="text-xl font-bold mb-2">Mensaje</h2>
-//                 <p id="messageText" class="mb-4">
-//                     <?php
-                        //                     if (isset($_POST['dni'])) {
-                        //                         require_once '../services/Clientes.php';
-                        //                         $clientes = new Clientes();
-                        //                         $resultado = $clientes->newCliente($_POST['dni'], $_POST['nombre'], $_POST['apellido1'], $_POST['apellido2'], $_POST['direccion'], $_POST['telefono']);
-                        //                         echo $resultado;
-                        //                     }
-                        //                     
-                        ?>
-//                 </p>
-//                 <button onclick="toggleMessageModal()" class="bg-blue-500 text-white px-4 py-2 rounded">Cerrar</button>
-//             </div>
-//         </div> -->
-// <!-- 
-//     <script>
-//         function toggleModal() {
-//             const modal = document.getElementById('modal');
-//             modal.classList.toggle('hidden');
-//         }
-
-//         function toggleMessageModal() {
-//             const messageModal = document.getElementById('messageModal');
-//             messageModal.classList.toggle('hidden');
-//         }
-//     </script> -->
+}
