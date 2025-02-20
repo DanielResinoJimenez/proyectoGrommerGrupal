@@ -41,4 +41,9 @@ class ClientesUso
 
         $this->view->getAllClientes($clientesLista);
     }
+    //Funcion para mostrar el formulario de creacion de clientes
+    public function showFormController()
+    {
+        $this->view->showForm();
+    }
 }

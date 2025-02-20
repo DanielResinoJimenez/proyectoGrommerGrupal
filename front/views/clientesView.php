@@ -1,11 +1,11 @@
 <?php
 class ClientesView
 {
-    public function createCliente()
+    public function showForm()
     {
 ?>
         <!-- Modal oculto inicialmente -->
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center ">
             <div class="bg-white p-4 rounded shadow-lg w-1/2">
                 <h2 class="text-xl font-bold mb-2">Crear Cliente</h2>
                 <form id="crearClienteForm" class="space-y-4" method="POST" action="">
@@ -50,6 +50,7 @@ class ClientesView
         <!-- Lista de clientes -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
+            <a href="http://localhost/gromer/front/index.php?controller=clientesUso&action=showFormController"><button>Crear Cliente</button></a>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
                     <tr>
