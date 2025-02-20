@@ -46,4 +46,76 @@ class ClientesUso
     {
         $this->view->showForm();
     }
+   //funcion para crear un cliente
+   public function createCliente()
+   {
+       // URL base de la API local
+       $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
+
+       // Petición POST
+       $post_url = $base_url . '?accion=crear';
+       $ch = curl_init($post_url);
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+       curl_setopt($ch, CURLOPT_POST, true);
+       curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+       $post_response = curl_exec($ch);
+       if ($post_response === false) {
+           echo 'Error en la petición POST: ' . curl_error($ch);
+       } else {
+           $data = json_decode($post_response, true);
+           $clientesLista = $data;
+       }
+       curl_close($ch);
+        if (isset($clientesLista['mensaje']) && $clientesLista['mensaje'] == 'El Cliente ya está dado de alta') {
+            echo "<script>alert('" . $clientesLista['mensaje'] . "');</script>";
+            $this->showFormController();            
+            return;
+        }
+        $this->showClientes();
+   }
+    //funcion para borrar un cliente
+    public function deleteCliente()
+{
+    // Verificar si se ha confirmado la eliminación
+    if (isset($_POST['confirmar'])) {
+        if ($_POST['confirmar'] == 'sí') {
+            // URL base de la API local
+            $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
+
+            // Petición POST
+            $post_url = $base_url . '?accion=borrar';
+            $ch = curl_init($post_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+            $post_response = curl_exec($ch);
+            if ($post_response === false) {
+                echo 'Error en la petición POST: ' . curl_error($ch);
+            } else {
+                $data = json_decode($post_response, true);
+                $clientesLista = $data;
+            }
+            curl_close($ch);
+            if (isset($clientesLista['mensaje']) && $clientesLista['mensaje'] == 'El cliente no existe') {
+                echo "<script>alert('" . $clientesLista['mensaje'] . "');</script>";
+                $this->showFormController();
+                return;
+            } else {
+                echo "<script>alert('Cliente DNI: " . $_POST['dni'] . " borrado correctamente');</script>";
+            }
+            $this->showClientes();
+        } else {
+            // Si el usuario dice "No", regresar a la vista de clientes
+            $this->showClientes();
+        }
+    } else {
+        // Mostrar formulario de confirmación
+        echo "<form method='POST' action='http://localhost/gromer/front/index.php?controller=clientesUso&action=deleteCliente'>";
+        echo "<input type='hidden' name='dni' value='" . $_POST['dni'] . "'>";
+        echo "<p class='p-10'>¿Está seguro de eliminar el cliente?</p>";
+        echo "<button type='submit' class='bg-red-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='sí'>Sí</button>";
+        echo "<button type='submit' class='bg-green-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='no'>No</button>";
+        echo "</form>";
+    }
+}
 }
