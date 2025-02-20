@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // redirige a la lista de libros
 if (!isset($_GET['controller']) || !isset($_GET['action'])) {
-    header('Location: index.php?controller=LibrosController&action=listar');
+    header('Location: index.php?controller=clientesUso&action=showClientes');
     exit();
 }
 if ($_GET['controller'] == 'UsersController') header('Location: ./index.php');
