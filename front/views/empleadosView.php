@@ -126,7 +126,7 @@
         <ul class="list-none space-y-3">
             <?php
             if (isset($_GET['listar']) && $_GET['listar'] === 'true') {
-                require_once('../services/Empleados.php');
+                require_once('../../api/services/Empleados.php');
                 $empleados = new Empleados();
                 $listaEmpleados = $empleados->getEmpleados();
                 if ($listaEmpleados) {
