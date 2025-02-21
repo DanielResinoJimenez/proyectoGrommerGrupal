@@ -63,7 +63,6 @@ class PerrosView
         <!-- Lista de clientes -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
-            <a href="http://localhost/gromer/front/index.php?controller=clientesUso&action=showFormController"><button>Crear Cliente</button></a>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
                     <tr>
@@ -95,7 +94,7 @@ class PerrosView
                             echo "<td class='px-4 py-2 whitespace-nowrap'>{$perro['Sexo']}</td>";
                             echo "<td class='px-4 py-2 whitespace-nowrap'>";
                             echo "<form method='POST' action='http://localhost/gromer/api/controllers/perrosController.php?accion=borrar' style='display:inline;'>";
-                            echo "<input type='hidden' name='dni' value='{$perro['Numero_chip']}'>";
+                            echo "<input type='hidden' name='dni' value='{$perro['Numero_Chip']}'>";
                             echo "<button type='submit' class='bg-red-500 text-white px-4 py-2 rounded'>Borrar</button>";
                             echo "</form>";
                             echo "</td>";

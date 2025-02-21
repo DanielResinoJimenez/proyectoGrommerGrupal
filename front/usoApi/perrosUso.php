@@ -1,15 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../views/perrosView.php';
-//Incluir el archivo de servicios
-// require_once __DIR__ . '../../../api/services/Clientes.php';
 
 
 
 class PerrosUso
 {
     private $view;
-    // private $clientes;
+    private $clientes;
 
     // Constructor de la clase . Inicializa los objetos model y view.
     public function __construct()
@@ -18,29 +16,43 @@ class PerrosUso
         // $this->clientes = new Clientes();
     }
 
-    // Función que muestra la vista de clientes
-    // public function modificarPerro()
-    // {
-    //     // URL base de la API local
-    //     $base_url = 'http://localhost/gromer/api/controllers/perrosController.php';
+    //Función mostrar perros por cliente
+    public function mostrarPerrosPorCliente($dni)
+    {
+        // URL de la API
+        $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
 
-    //     // Petición POST
-    //     $get_url = $base_url . '?accion=listar';
-    //     $ch = curl_init($get_url);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     curl_setopt($ch, CURLOPT_HTTPGET, true);
-    //     $get_response = curl_exec($ch);
-    //     if ($get_response === false) {
-    //         echo 'Error en la petición GET: ' . curl_error($ch);
-    //     } else {
-    //         $data = json_decode($get_response, true);
-    //         $clientesLista = $data;
-    //     }
-    //     curl_close($ch);
+        if (!$dni) {
+            echo "<script>alert('DNI del cliente no proporcionado');</script>";
+            return;
+        }
 
+        // Construir la URL con los parámetros requeridos
+        $get_url = $base_url . '?accion=perros&dni=' . $dni;
 
-    //     $this->view->getAllClientes($clientesLista);
-    // }
+        // Iniciar cURL
+        $ch = curl_init($get_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Ejecutar la solicitud
+        $get_response = curl_exec($ch);
+
+        if ($get_response === false) {
+            echo 'Error en la petición GET: ' . curl_error($ch);
+        } else {
+            $data = json_decode($get_response, true);
+
+            // Verificar si la respuesta es válida y contiene datos
+            if ($data) {
+                $this->view->mostrarPerrosPorCliente($data);
+            } else {
+                echo "<script>alert('No se encontraron perros para este cliente o hubo un error en la respuesta');</script>";
+            }
+        }
+
+        // Cerrar cURL
+        curl_close($ch);
+    }
 
     //Funcióon para crear un nuevo perro
     public function crearPerro()
