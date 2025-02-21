@@ -49,11 +49,19 @@ class ClientesView
         <!-- Lista de clientes -->
         <div class="bg-white p-6 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold text-purple-600 mb-2">Nuestros Clientes</h2>
-            <div class="text-left mb-4">
-                <a href="http://localhost/gromer/front/index.php?controller=clientesUso&action=showFormController">
-                    <button class="bg-green-500 text-white px-4 py-2 rounded">Nuevo Cliente</button>
-                </a>
-            </div>
+            <div class="flex justify-between items-center mb-4">
+    <a href="http://localhost/gromer/front/index.php?controller=clientesUso&action=showFormController">
+        <button class="bg-green-500 text-white px-4 py-2 rounded">Nuevo Cliente</button>
+    </a>
+    <div class="flex items-center">
+        <form method="GET" action="http://localhost/gromer/front/index.php">
+            <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar Cliente</button>
+            <input type="hidden" name="controller" value="clientesUso">
+            <input type="hidden" name="action" value="getCliente">
+            <input type="search" id="default-search" name="dni" class="w-[200px] p-2 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2" placeholder="Introduce DNI" required />
+        </form>
+    </div>
+</div> 
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
                     <tr>
@@ -63,7 +71,7 @@ class ClientesView
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 2</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dirección</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opciones</th>
                     </tr>
                 </thead>
                 <tbody id="clientesLista" class="bg-white divide-y divide-gray-200">

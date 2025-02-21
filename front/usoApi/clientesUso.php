@@ -17,6 +17,33 @@ class ClientesUso
         $this->view = new ClientesView();
         // $this->clientes = new Clientes();
     }
+    //Funcion para obtener un cliente
+    public function getCliente()
+    {          
+        // URL base de la API local
+        $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
+
+        // Petición GET
+        $get_url = $base_url . '?accion=obtener&dni=' . $_GET['dni'];
+        $ch = curl_init($get_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        $get_response = curl_exec($ch);
+        if ($get_response === false) {
+            echo 'Error en la petición GET: ' . curl_error($ch);
+        } else {
+            $data = json_decode($get_response, true);
+            $cliente = $data;
+        }
+        curl_close($ch);
+        if(isset($_GET['dni'])){
+            // echo "<script>alert('El cliente no existe');</script>";
+            $this->view->getAllClientes($cliente);
+        }else{
+            $this->showClientes();
+        }
+        
+    }
 
     // Función que muestra la vista de clientes
     public function showClientes()
@@ -113,8 +140,8 @@ class ClientesUso
         echo "<form method='POST' action='http://localhost/gromer/front/index.php?controller=clientesUso&action=deleteCliente'>";
         echo "<input type='hidden' name='dni' value='" . $_POST['dni'] . "'>";
         echo "<p class='p-10'>¿Está seguro de eliminar el cliente?</p>";
-        echo "<button type='submit' class='bg-red-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='sí'>Sí</button>";
-        echo "<button type='submit' class='bg-green-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='no'>No</button>";
+        echo "<button type='submit' class='bg-green-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='sí'>Sí</button>";
+        echo "<button type='submit' class='bg-red-500 text-white mx-2 px-4 py-2 rounded' name='confirmar' value='no'>No</button>";
         echo "</form>";
     }
 }
