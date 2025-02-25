@@ -129,29 +129,95 @@ class EmpleadosView
     {
     ?>
         <!-- Mostrar la lista de empleados -->
-        <!-- Mostrar la lista de empleados -->
         <div class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Lista de Empleados</h2>
-            <form action="../index.php?controller=empleados&action=addEmpleado" method="get" class="text-center mb-6">
+            <form action="./index.php?controller=empleadosUso&action=showEmpleados" method="post" class="text-center mb-6">
                 <input type="hidden" name="listar" value="true">
-
                 <button type="submit" class="w-48 bg-gray-500 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg">Cargar Empleados</button>
             </form>
             <ul class="list-none space-y-3">
                 <?php
-
-                    if ($empleadosLista) {
-                        foreach ($empleadosLista as $empleado) {
-                            echo "<li class='bg-gray-50 border-gray-200 rounded-lg py-3 px-6'>{$empleado['DNI']} - {$empleado['Nombre']} {$empleado['Apellido1']} {$empleado['Apellido2']}</li>";
-                        }
-                    } else {
-                        echo "<li class='bg-gray-50 border-gray-200 rounded-lg py-3 px-6'>Error al cargar la lista de empleados</li>";
+                if (!empty($empleadosLista)) {
+                    foreach ($empleadosLista as $empleado) {
+                        echo "<li class='bg-gray-50 border-gray-200 rounded-lg py-3 px-6'>{$empleado['DNI']} - {$empleado['Nombre']} {$empleado['Apellido1']} {$empleado['Apellido2']}</li>";
                     }
-                
-
+                } else {
+                    echo "<li class='bg-gray-50 border-gray-200 rounded-lg py-3 px-6'>Error al cargar la lista de empleados</li>";
+                }
                 ?>
             </ul>
         </div>
+        </div>
+    <?php
+    }
+    public function showAllEmpleados($empleadosLista)
+    {
+    ?>
+        <!-- Lista de empleados -->
+        <div class="bg-white p-6 rounded shadow mb-4 overflow-x-auto">
+            <h2 class="text-xl font-bold text-purple-600 mb-2">Nuestros Empleados</h2>
+            <div class="flex justify-between items-center mb-4">
+                <a href="http://localhost/gromer/front/index.php?controller=empleadosUso&action=showFormController">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded">Nuevo Empleado</button>
+                </a>
+                <div class="flex items-center">
+                    <form method="GET" action="http://localhost/gromer/front/index.php">
+                        <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar Empleado</button>
+                        <input type="hidden" name="controller" value="empleadosUso">
+                        <input type="hidden" name="action" value="getEmpleado">
+                        <input type="text" name="dni" class="border border-gray-300 rounded-md shadow-sm p-2" placeholder="DNI">
+                    </form>
+                </div>
+            </div>
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 1</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 2</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Calle</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Número</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CP</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Población</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Provincia</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profesión</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="empleadosLista" class="bg-white divide-y divide-gray-200">
+                    <?php
+                    if (!empty($empleadosLista)) {
+                        foreach ($empleadosLista as $empleado) {
+                            echo "<tr>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Nombre']) ? $empleado['Nombre'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Apellido1']) ? $empleado['Apellido1'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Apellido2']) ? $empleado['Apellido2'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Email']) ? $empleado['Email'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Rol']) ? $empleado['Rol'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Calle']) ? $empleado['Calle'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Numero']) ? $empleado['Numero'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Cp']) ? $empleado['Cp'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Poblacion']) ? $empleado['Poblacion'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Provincia']) ? $empleado['Provincia'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Tlfno']) ? $empleado['Tlfno'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Profesion']) ? $empleado['Profesion'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>
+                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=editEmpleado&dni=" . (isset($empleado['DNI']) ? $empleado['DNI'] : '') . "' class='text-blue-600 hover:text-blue-800'>Editar</a>
+                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=deleteEmpleado&dni=" . (isset($empleado['DNI']) ? $empleado['DNI'] : '') . "' class='text-red-600 hover:text-red-800'>Eliminar</a>
+                                    </td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='14' class='text-center'>No hay empleados para mostrar</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
 <?php
     }

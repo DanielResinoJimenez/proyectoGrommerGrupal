@@ -13,29 +13,29 @@
         <a href="./index.php">
             <h1 class="text-purple-500 font-bold text-5xl">Ribera Pets</h1>
         </a>
-            <div class="flex justify-between gap-8">
-                <a class="text-purple-500 font-semibold text-xl" href="index.php">
-                    <p>Home</p>
-                </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=">
-                    <p>Empleados</p>
-                </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=clientesUso&action=showClientes">
-                    <p>Clientes</p>
-                </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
-                    <p>Servicios</p>
-                </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
-                    <p>Servicios Realizados</p>
-                </a>
-                <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+        <div class="flex justify-between gap-8">
+            <a class="text-purple-500 font-semibold text-xl" href="index.php">
+                <p>Home</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
+                <p>Empleados</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=clientesUso&action=showClientes">
+                <p>Clientes</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
+                <p>Servicios</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+                <p>Servicios Realizados</p>
+            </a>
+            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Perros</p>
                 </a> -->
-                <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Log Out</p>
                 </a> -->
-            </div>
+        </div>
     </header>
     <div class="container mx-auto text-center">
         <?php
