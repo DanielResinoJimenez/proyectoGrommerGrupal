@@ -26,7 +26,7 @@
             <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
                 <p>Servicios</p>
             </a>
-            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                 <p>Servicios Realizados</p>
             </a>
             <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
