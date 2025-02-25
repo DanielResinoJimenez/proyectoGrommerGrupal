@@ -1,9 +1,9 @@
 <?php
 
 
-require_once __DIR__ . '/../views/empeladosView.php';
+require_once __DIR__ . '/../views/empleadosView.php';
      //Incluir el archivo
-     require_once __DIR__ . '../../api/controllers/empleadosController.php';
+    //  require_once __DIR__ . './../../api/controllers/empleadosController.php';
 
 class EmpleadosUso{
     private $view;
@@ -13,18 +13,30 @@ class EmpleadosUso{
     // Constructor de la clase empleadosController. Inicializa el view.
     public function __construct(){
         //QUITAR COMENTARIO
-        // $this->view = new EmpleadosView();
-        // $this->empleados = new Empleados();
+         $this->view = new EmpleadosView();
 }
 
 // Función para crear un nuevo empleado
-    public function showEmpleados(){
+public function showEmpleados()
+{
+    // URL base de la API local
+    $base_url = 'http://localhost/gromer/api/controllers/empleadosController.php';
 
-   
-        //Obtener la lista d empleadsos
-        $empleados = $this->empleados->getEmpleados();
-
-        $this->view->showEmpleados();
-
+    // Petición GET
+    $get_url = $base_url . '?accion=listar';
+    $ch = curl_init($get_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    $get_response = curl_exec($ch);
+    if ($get_response === false) {
+        echo 'Error en la petición GET: ' . curl_error($ch);
+    } else {
+        $data = json_decode($get_response, true);
+        $empleadosLista = $data;
     }
+    curl_close($ch);
+    // print_r($clientesLista);
+
+    $this->view->showEmpleados($empleadosLista);
+}
 }

@@ -11,6 +11,18 @@ class Servicio extends Basedatos {
         $this->conexion = $this->getConexion();
     }
 
+    public function getAllServicios(){
+        try {
+            $sql = "SELECT * FROM " . $this->table;
+            $sentencia = $this->conexion->prepare($sql); // Cambiado de execute a prepare
+            $sentencia->execute(); // Añadido execute
+            $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            return "ERROR AL obtener los servicios.<br>" . $e->getMessage();
+        }
+    }
+
     public function newServicio($cod, $nombre, $precio, $descripcion)
     {
         try {
