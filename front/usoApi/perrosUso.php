@@ -17,8 +17,10 @@ class PerrosUso
     }
 
     //Función mostrar perros por cliente
-    public function mostrarPerrosPorCliente($dni)
+    public function mostrarPerrosPorCliente()
     {
+        $dni = $_GET['clienteDni'];
+
         // URL de la API
         $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
 

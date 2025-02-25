@@ -86,7 +86,7 @@ if (is_array($clientesLista)) {
         echo "<td class='px-4 py-2 text-left whitespace-nowrap'>{$cliente['Direccion']}</td>";
         echo "<td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($cliente['telefono']) ? $cliente['telefono'] : 'N/A') . "</td>";
         echo "<td class='px-4 py-2 text-left whitespace-nowrap'>";
-        echo "<button type='submit' class='bg-yellow-700 text-white px-4 py-2 rounded mr-2' onclick='window.location.href=\"http://localhost/gromer/front/index.php?controller=perrosUso&action=showPerros&clienteDni={$cliente['Dni']}\"'>Perros</button>";
+        echo "<button type='submit' class='bg-yellow-700 text-white px-4 py-2 rounded mr-2' onclick='window.location.href=\"http://localhost/gromer/front/index.php?controller=perrosUso&action=mostrarPerrosPorCliente&clienteDni={$cliente['Dni']}\"'>Perros</button>";
         echo "<form method='POST' action='http://localhost/gromer/front/index.php?controller=clientesUso&action=deleteCliente' style='display:inline;'>";
         echo "<input type='hidden' name='dni' value='{$cliente['Dni']}'>";
         echo "<button type='submit' class='bg-red-500 text-white px-4 py-2 rounded'>Borrar</button>";
