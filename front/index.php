@@ -29,16 +29,16 @@
                 <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
                     <p>Servicios</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
                     <p>Servicios Realizados</p>
                 </a>
                 <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Perros</p>
                 </a> -->
-                <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Log Out</p>
                 </a> -->
-            </div>
+        </div>
     </header>
     <div class="container mx-auto text-center">
         <?php

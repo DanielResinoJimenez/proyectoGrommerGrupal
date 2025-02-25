@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $inputData = file_get_contents("php://input");
             $data = json_decode($inputData, true);
 
-       
+
             // Verifica si hay errores al decodificar el JSON
             if (json_last_error() !== JSON_ERROR_NONE) {
                 echo json_encode(["error" => "Error al decodificar JSON", "status" => "error", "inputData" => $inputData]);
@@ -56,10 +56,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Si todos los campos estan llama al metodo newEmpleado y guarda la respuesta
         if (empty($missingFields)) {
             $response = $empleados->newEmpleado(
-                $data['dni'], $data['email'], $data['password'], $data['rol'], 
-                $data['nombre'], $data['apellido1'], $data['apellido2'], $data['calle'], 
-                $data['numero'], $data['cp'], $data['poblacion'], $data['provincia'], 
-                $data['tlfno'], $data['profesion']
+                $data['dni'],
+                $data['email'],
+                $data['password'],
+                $data['rol'],
+                $data['nombre'],
+                $data['apellido1'],
+                $data['apellido2'],
+                $data['calle'],
+                $data['numero'],
+                $data['cp'],
+                $data['poblacion'],
+                $data['provincia'],
+                $data['tlfno'],
+                $data['profesion']
             );
             // Devuelve la respuesta en formato JSON
             echo json_encode(["message" => $response, "status" => "success"]);
@@ -69,21 +79,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-// Si la solicitud HTTP es de tipo GET
+    // Si la solicitud HTTP es de tipo GET
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     if (isset($_GET['dni'])) {
         // Si se ha dado un DNI llama al metodo getEmpleadoByDNI y devuelve el resultado en formato JSON
         $empleado = $empleados->getEmpleadoByDNI($_GET['dni']);
         echo json_encode($empleado);
-    } else {
-        // Si no se ha dado un DNI llama al metodo getEmpleados y devuelve la lista de empleados en formato JSON
+    } elseif (isset($_GET['accion']) && $_GET['accion'] === 'listarEmpleados') {
         $empleadosList = $empleados->getEmpleados();
         echo json_encode($empleadosList);
+    } else {
+        echo json_encode(["error" => "Acción no válida", "status" => "error"]);
     }
 } else {
     header("HTTP/1.1 400 Bad Request");
     echo json_encode(["error" => "Método no permitido", "status" => "error"]);
 }
-
-?>
