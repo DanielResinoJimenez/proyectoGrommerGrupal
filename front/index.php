@@ -20,9 +20,12 @@
                 <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=">
                     <p>Empleados</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=clientesUso&action=showClientes">
-                    <p>Clientes</p>
-                </a>
+                <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
+                    <input type="hidden" name="dniInfo" value="">
+                    <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
+                        <p>Clientes</p>
+                    </a>
+                </form>
                 <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
                     <p>Servicios</p>
                 </a>
