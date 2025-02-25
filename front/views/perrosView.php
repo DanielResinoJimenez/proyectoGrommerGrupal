@@ -6,45 +6,45 @@ class PerrosView
     public function mostrarFormularioCrearPerro()
     {
 ?>
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center ">
-            <div class="bg-white p-4 rounded shadow-lg w-1/2">
+        <div id="modal" class="fixed inset-0 bg-gray-600 dark:bg-gray-400 bg-opacity-50 flex items-center justify-center ">
+            <div class="bg-white dark:bg-black p-4 rounded shadow-lg w-1/2">
                 <h2 class="text-xl font-bold mb-2">Crear Cliente</h2>
                 <form id="crearNuevoPerro" class="space-y-4" method="POST" action="http://localhost/gromer/front/index.php?controller=perrosUso&action=crearPerro">
                     <div>
-                        <label for="dni" class="block text-sm font-medium text-gray-700">DNI del dueño:</label>
-                        <input type="text" id="dni" name="dni_duenio" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="dni" class="block text-sm font-medium text-gray-700 dark:text-gray-200">DNI del dueño:</label>
+                        <input type="text" id="dni" name="dni_duenio" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="fecha_nto" class="block text-sm font-medium text-gray-700">Fecha de nacimiento:</label>
-                        <input type="text" id="fecha_nto" name="fecha_nto" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="fecha_nto" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Fecha de nacimiento:</label>
+                        <input type="text" id="fecha_nto" name="fecha_nto" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="raza" class="block text-sm font-medium text-gray-700">Raza:</label>
-                        <input type="text" id="raza" name="raza" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="raza" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Raza:</label>
+                        <input type="text" id="raza" name="raza" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="peso" class="block text-sm font-medium text-gray-700">Peso:</label>
-                        <input type="text" id="peso" name="peso" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="peso" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Peso:</label>
+                        <input type="text" id="peso" name="peso" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="altura" class="block text-sm font-medium text-gray-700">Altura:</label>
-                        <input type="text" id="altura" name="altura" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="altura" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Altura:</label>
+                        <input type="text" id="altura" name="altura" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="observaciones" class="block text-sm font-medium text-gray-700">Observaciones:</label>
-                        <input type="text" id="observaciones" name="observaciones" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="observaciones" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Observaciones:</label>
+                        <input type="text" id="observaciones" name="observaciones" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="numero_chip" class="block text-sm font-medium text-gray-700">Numero de chip:</label>
-                        <input type="text" id="numero_chip" name="numero_chip" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="numero_chip" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Numero de chip:</label>
+                        <input type="text" id="numero_chip" name="numero_chip" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div>
-                        <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <label for="sexo" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Sexo:</label>
+                        <input type="text" id="sexo" name="sexo" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div class="flex justify-end">
                         <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancelar</button>
@@ -61,20 +61,20 @@ class PerrosView
     {
     ?>
         <!-- Lista de clientes -->
-        <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
+        <div class="bg-white dark:bg-black p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
-                <thead class="bg-gray-50">
+                <thead class="bg-gray-50 dark:bg-gray-600">
                     <tr>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI del dueño</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha de nacimiento</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Raza</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Peso</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Altura</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Observaciones</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Número de chip</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sexo</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">DNI del dueño</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Nombre</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Fecha de nacimiento</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Raza</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Peso</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Altura</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Observaciones</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Número de chip</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Sexo</th>
                     </tr>
                 </thead>
                 <tbody id="listaPerros" class="bg-white divide-y divide-gray-200">
