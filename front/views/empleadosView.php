@@ -9,7 +9,7 @@ class EmpleadosView
         <!-- Formulario para agregar un nuevo empleado -->
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Nuevo Empleado</h2>
-            <form action="../../api/controllers/empleadosController.php" method="post">
+            <form action="../index.php?controller=empleados&action=addEmpleado" method="post">
                 <input type="hidden" name="accion" value="nuevo_empleado">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
@@ -91,7 +91,7 @@ class EmpleadosView
         <!-- Formulario para buscar empleado por DNI -->
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Buscar Empleado por DNI</h2>
-            <form action="../views/empleadosView.php" method="get">
+            <form action="../index.php?controller=empleados&action=addEmpleado" method="get">
                 <div class="form-group">
                     <label for="buscarDni" class="block text-gray-700">DNI</label>
                     <input type="text" class="form-control w-full border rounded-lg py-3 px-4" id="buscarDni" name="dni" required>
@@ -113,7 +113,7 @@ class EmpleadosView
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Eliminar Empleado</h2>
 
-            <form action="../../api/controllers/empleadosController.php" method="post">
+            <form action="../index.php?controller=empleados&action=addEmpleado" method="post">
                 <input type="hidden" name="_method" value="DELETE">
                 <div class="form-group">
                     <label for="eliminarDni" class="block text-gray-700">DNI</label>
@@ -132,7 +132,7 @@ class EmpleadosView
         <!-- Mostrar la lista de empleados -->
         <div class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Lista de Empleados</h2>
-            <form action="../views/empleadosView.php" method="get" class="text-center mb-6">
+            <form action="../index.php?controller=empleados&action=addEmpleado" method="get" class="text-center mb-6">
                 <input type="hidden" name="listar" value="true">
 
                 <button type="submit" class="w-48 bg-gray-500 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg">Cargar Empleados</button>
