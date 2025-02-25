@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ .'/../bd.php';
+include_once __DIR__ . '/../bd.php';
 
 class Clientes extends Basedatos
 {
@@ -119,7 +119,7 @@ class Clientes extends Basedatos
             }
 
             // Obtener los perros del cliente
-            $sql_perros = "SELECT * FROM PERROS WHERE Dni_Cliente = ?";
+            $sql_perros = "SELECT * FROM PERROS WHERE Dni_duenio = ?";
             $sentencia_perros = $this->conexion->prepare($sql_perros);
             $sentencia_perros->bindParam(1, $dni);
             $sentencia_perros->execute();
