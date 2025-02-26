@@ -107,6 +107,9 @@ class PerrosView
                             echo "</td>";
                             echo "</tr>";
                         }
+                    } else {
+                        echo "<tr><td colspan='8' class='text-center font-bold text-xl text-red-500 dark:bg-gray-700'>No hay perros asignados a este cliente</td></tr>";
+
                     ?>
                 </tbody>
             </table>
