@@ -89,6 +89,20 @@ class Empleados extends Basedatos
         }
     }
 
+    public function getPassMail($email){
+        try {
+            $sql = "SELECT Email, Password, Rol FROM " . $this->table . " WHERE Email = ?";
+            $sentencia = $this->conexion->prepare($sql);
+            $sentencia->bindParam(1, $email);
+            $sentencia->execute();
+            return $sentencia->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "Error al obtener el email y la contraseña: " . $e->getMessage();
+        }
+    }
+
+    
+
     // Función para obtener un empleado por DNI
     public function getEmpleadoByDNI($dni)
     {

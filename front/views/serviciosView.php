@@ -1,10 +1,17 @@
 <?php
 class ServiciosView{
-  
-    // updatear crear y mostar Todos los servicios
-
 
     public function showServices($listaServices){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
         ?>
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Servicios</h2>
@@ -45,6 +52,16 @@ class ServiciosView{
     
 
     public function showEdit(){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
         ?>
         <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
             <div class="bg-white p-6 rounded shadow-lg w-1/3">
@@ -64,6 +81,16 @@ class ServiciosView{
     }
 
     public function crearServicio() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
         ?>
         <!-- Modal para crear servicios -->
         <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">

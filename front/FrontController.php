@@ -6,7 +6,7 @@ define('ACCION_DEFECTO', 'showHome');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// redirige a la lista de libros
+
 if (!isset($_GET['controller']) || !isset($_GET['action'])) {
     header('Location: index.php?controller=homeUso&action=showHome');
     exit();

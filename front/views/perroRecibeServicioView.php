@@ -4,6 +4,20 @@ class PerroRecibeServicio
 {
     public function showFormServ()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
+        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+        if (!$isAdmin) {
+            header('Location: http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros');
+            exit();
+        }
 ?>
         <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center ">
             <div class="bg-white p-4 rounded shadow-lg w-1/2">
@@ -46,13 +60,30 @@ class PerroRecibeServicio
 
     public function mostrarServiciosPorPerro($servPorPerro)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Lista de Servicios hechos a los perros -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Servicios hechos a los perros</h2>
-            <a href="http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=showFormServ">
-                <button class="bg-green-500 text-white px-4 py-2 rounded">Insertar un nuevo servicio realizado</button>
-            </a>
+            <?php
+                $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+                if ($isAdmin) {
+            ?>
+                <a href="http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=showFormServ">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded">Insertar un nuevo servicio realizado</button>
+                </a>
+            <?php  
+                }
+            ?>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
                     <tr>

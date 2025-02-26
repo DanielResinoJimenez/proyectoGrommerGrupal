@@ -5,6 +5,16 @@ class PerrosView
 
     public function mostrarFormularioCrearPerro()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
 ?>
         <div id="modal" class="fixed inset-0 bg-gray-600 dark:bg-gray-400 bg-opacity-50 flex items-center justify-center ">
             <div class="bg-white dark:bg-black p-4 rounded shadow-lg w-1/2">
@@ -59,6 +69,16 @@ class PerrosView
 
     public function mostrarPerrosPorCliente($perrosCliente)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
 
         <!-- Lista de clientes -->

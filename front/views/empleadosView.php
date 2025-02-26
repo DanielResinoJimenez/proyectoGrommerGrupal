@@ -5,6 +5,16 @@ class EmpleadosView
 
     public function showAddEmpleadoForm()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
 ?>
         <!-- Formulario para agregar un nuevo empleado -->
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
@@ -87,6 +97,16 @@ class EmpleadosView
 
     public function showSearchEmpleadoByDNIForm()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Formulario para buscar empleado por DNI -->
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
@@ -107,6 +127,16 @@ class EmpleadosView
 
     public function showDeleteEmpleadoForm()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Formulario para eliminar empleado por DNI -->
         <!-- Formulario para eliminar empleado por DNI -->
@@ -127,6 +157,16 @@ class EmpleadosView
     }
     public function showEmpleados($empleadosLista)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Mostrar la lista de empleados -->
         <div class="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
@@ -152,6 +192,16 @@ class EmpleadosView
     }
     public function showAllEmpleados($empleadosLista)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Lista de empleados -->
         <div class="bg-white p-6 rounded shadow mb-4 overflow-x-auto">

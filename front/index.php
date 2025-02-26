@@ -13,8 +13,7 @@
     </script>
     <title>RiberaPets</title>
 </head>
-
-<body class="bg-blue-100 min-h-screen dark:bg-gray-700" x-data="{ darkMode: false }" x-init="
+<body class="bg-blue-100 min-h-screen dark:bg-blue-800/65" x-data="{ darkMode: false }" x-init="
 darkMode = localStorage.getItem('darkMode') === 'true';
 if (darkMode) document.documentElement.classList.add('dark');
 ">
@@ -43,6 +42,12 @@ if (darkMode) document.documentElement.classList.add('dark');
               </div>
             </div>
           </label>
+          <?php
+          session_start();
+          
+          $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+          if ($isLoggedIn) {
+            ?>
             <a class="text-purple-500 font-semibold text-xl" href="index.php">
                 <p>Home</p>
             </a>
@@ -61,12 +66,15 @@ if (darkMode) document.documentElement.classList.add('dark');
                 <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
                     <p>Servicios Realizados</p>
                 </a>
+                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=clientesUso&action=logOut">
+                        <p>Log Out</p>
+                </a>
                 <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Perros</p>
                 </a> -->
-            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
-                    <p>Log Out</p>
-                </a> -->
+            <?php
+                }
+            ?>
         </div>
     </header>
     <div class="container mx-auto text-center">

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../views/clientesView.php';
+require_once __DIR__ . '/../views/logInView.php';
 //Incluir el archivo de servicios
 // require_once __DIR__ . '../../../api/services/Clientes.php';
 
@@ -9,12 +10,14 @@ require_once __DIR__ . '/../views/clientesView.php';
 class ClientesUso
 {
     private $view;
+    private $log;
     // private $clientes;
 
     // Constructor de la clase . Inicializa los objetos model y view.
     public function __construct()
     {
         $this->view = new ClientesView();
+        $this->log = new LoginView();
         // $this->clientes = new Clientes();
     }
     //Funcion para obtener un cliente
@@ -146,4 +149,57 @@ class ClientesUso
         echo "</form>";
     }
 }
+
+    public function showLogIn(){
+        $this->log->showFormLogin();
+    }
+
+
+    public function logIn(){
+        // URL base de la API local
+        $base_url = 'http://localhost/gromer/api/controllers/logInController.php';
+
+        $data = [
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+        ];
+
+        // Petición POST
+        $ch = curl_init($base_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        $post_response = curl_exec($ch);
+        if ($post_response === false) {
+            echo 'Error en la petición POST: ' . curl_error($ch);
+        } else {
+            $data = json_decode($post_response, true);
+            if (isset($data['message']) && $data['message'] == 'Inicio de sesión exitoso') {
+                echo "<script>alert('Login exitoso');</script>";
+                // Guardar en cookies que el usuario ha iniciado sesión
+                setcookie('loggedIn', 'true', time() + (86400 * 30), "/"); // 86400 = 1 day
+                setcookie('rol', $data['rol'], time() + (86400 * 30), "/"); // 86400 = 1 day
+                // Redirigir a la página de clientes
+                header('Location: http://localhost/gromer/front/index.php?controller=HomeUso&action=showHome');
+                exit();
+            } else {
+                $m = $data['message'];
+                echo "<script>alert('". $m ."');</script>";
+                $this->log->showFormLogin();
+            }
+        }
+        curl_close($ch);
+    }
+
+    public function logOut(){
+        // Eliminar las cookies de sesión
+        setcookie('loggedIn', '', time() - 3600, "/");
+        setcookie('rol', '', time() - 3600, "/");
+
+        // Redirigir a la página de inicio de sesión
+        header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+        exit();
+    }
+    
+
 }

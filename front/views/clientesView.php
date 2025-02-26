@@ -3,6 +3,16 @@ class ClientesView
 {
     public function showForm()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
 ?>
         <!-- Modal para crear clientes -->
         <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center ">
@@ -45,6 +55,16 @@ class ClientesView
 
     public function getAllClientes($clientesLista)
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
+        // $isAdmin = false;
+        if (!$isLoggedIn) {
+            header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
+            exit();
+        }
     ?>
         <!-- Lista de clientes -->
         <div class="bg-white p-6 rounded shadow mb-4 overflow-x-auto">
