@@ -115,6 +115,7 @@ class Empleados extends Basedatos
         } catch (PDOException $e) {
             return "Error al obtener el empleado: " . $e->getMessage();
         }
-    }    
+    }   
+     
 }
 ?>

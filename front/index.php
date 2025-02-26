@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-        darkMode: 'class', // Esto permite que 'dark:' responda a la clase 'dark' en <html>
+            darkMode: 'class', // Esto permite que 'dark:' responda a la clase 'dark' en <html>
         };
     </script>
     <title>RiberaPets</title>
@@ -17,17 +17,17 @@
 darkMode = localStorage.getItem('darkMode') === 'true';
 if (darkMode) document.documentElement.classList.add('dark');
 ">
-    <header class="bg-blue-200 flex justify-between items-center p-8">
+    <header class="bg-blue-200 flex justify-between items-center p-8 dark:bg-gray-800">
         <a href="./index.php">
-            <h1 class="text-purple-500 font-bold text-5xl">Ribera Pets</h1>
+            <h1 class="text-purple-500 font-bold text-5xl dark:text-purple-300">Ribera Pets</h1>
         </a>
         <div class="flex justify-between gap-8">
             <!-- TOGGLE PARA EL MODO DE TEMA (CLARO U OSCURO) -->
-          <label class="inline-flex items-center cursor-pointer" x-data="{ checked: false }" x-init="
+            <label class="inline-flex items-center cursor-pointer" x-data="{ checked: false }" x-init="
           checked = localStorage.getItem('darkMode') === 'true';
           if (checked) document.documentElement.classList.add('dark');
           ">
-            <input type="checkbox" class="sr-only" x-model="checked" @change="
+                <input type="checkbox" class="sr-only" x-model="checked" @change="
               document.documentElement.classList.toggle('dark', checked);
               localStorage.setItem('darkMode', checked);
           " />
@@ -48,26 +48,34 @@ if (darkMode) document.documentElement.classList.add('dark');
           $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
           if ($isLoggedIn) {
             ?>
-            <a class="text-purple-500 font-semibold text-xl" href="index.php">
+            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php">
+                <div class="w-20 h-10 rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 transition-all duration-500 border-2 border-gray-500" :class="{ 'from-blue-400 to-indigo-500': checked }">
+                    <div class="mt-[2px] mx-[2px] bg-white rounded-full h-8 w-8 flex items-center justify-center transition-all duration-500 transform" :class="{ 'translate-x-10': checked }">
+                        <span x-show="!checked">☀️</span>
+                        <span x-show="checked">🌙</span>
+                    </div>
+                </div>
+            </label> -->
+            <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php">
                 <p>Home</p>
             </a>
-            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
+            <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php?controller=empleadosUso&action=showEmpleados">
                 <p>Empleados</p>
             </a>
-                <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
-                    <input type="hidden" name="dniInfo" value="">
-                    <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
-                        <p>Clientes</p>
-                    </a>
-                </form>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
+            <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
+                <input type="hidden" name="dniInfo" value="">
+                <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="#" onclick="document.getElementById('clientesForm').submit();">
+                    <p>Clientes</p>
+                </a>
+          </form>
+                <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php?controller=serviciosUso&action=showServicios">
                     <p>Servicios</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
+                <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
                     <p>Servicios Realizados</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=clientesUso&action=logOut">
-                        <p>Log Out</p>
+                <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php?controller=clientesUso&action=logOut">
+                    <p>Log Out</p>
                 </a>
                 <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Perros</p>
