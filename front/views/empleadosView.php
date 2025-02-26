@@ -9,7 +9,7 @@ class EmpleadosView
         <!-- Formulario para agregar un nuevo empleado -->
         <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Nuevo Empleado</h2>
-            <form action="../index.php?controller=empleados&action=addEmpleado" method="post">
+            <form action="./index.php?controller=empleadosUso&action=createEmpleado" method="post">
                 <input type="hidden" name="accion" value="nuevo_empleado">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
@@ -164,7 +164,7 @@ class EmpleadosView
                     <form method="GET" action="http://localhost/gromer/front/index.php">
                         <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar Empleado</button>
                         <input type="hidden" name="controller" value="empleadosUso">
-                        <input type="hidden" name="action" value="getEmpleado">
+                        <input type="hidden" name="action" value="getEmpleadoByDNI">
                         <input type="text" name="dni" class="border border-gray-300 rounded-md shadow-sm p-2" placeholder="DNI">
                     </form>
                 </div>
@@ -190,7 +190,7 @@ class EmpleadosView
                 </thead>
                 <tbody id="empleadosLista" class="bg-white divide-y divide-gray-200">
                     <?php
-                    if (!empty($empleadosLista)) {
+                    if (!empty($empleadosLista) && $empleadosLista[0] != false) {
                         foreach ($empleadosLista as $empleado) {
                             echo "<tr>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "</td>
@@ -207,8 +207,8 @@ class EmpleadosView
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Tlfno']) ? $empleado['Tlfno'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Profesion']) ? $empleado['Profesion'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>
-                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=editEmpleado&dni=" . (isset($empleado['DNI']) ? $empleado['DNI'] : '') . "' class='text-blue-600 hover:text-blue-800'>Editar</a>
-                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=deleteEmpleado&dni=" . (isset($empleado['DNI']) ? $empleado['DNI'] : '') . "' class='text-red-600 hover:text-red-800'>Eliminar</a>
+                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=editEmpleado&dni=" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "' class='text-blue-600 hover:text-blue-800'>Editar</a>
+                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=deleteEmpleado&dni=" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "' class='text-red-600 hover:text-red-800'>Eliminar</a>
                                     </td>
                                 </tr>";
                         }
