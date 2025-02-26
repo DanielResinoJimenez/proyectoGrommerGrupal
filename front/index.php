@@ -13,26 +13,26 @@
         <a href="./index.php">
             <h1 class="text-purple-500 font-bold text-5xl">Ribera Pets</h1>
         </a>
-            <div class="flex justify-between gap-8">
-                <a class="text-purple-500 font-semibold text-xl" href="index.php">
-                    <p>Home</p>
+        <div class="flex justify-between gap-8">
+            <a class="text-purple-500 font-semibold text-xl" href="index.php">
+                <p>Home</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
+                <p>Empleados</p>
+            </a>
+            <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
+                <input type="hidden" name="dniInfo" value="">
+                <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
+                    <p>Clientes</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=">
-                    <p>Empleados</p>
-                </a>
-                <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
-                    <input type="hidden" name="dniInfo" value="">
-                    <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
-                        <p>Clientes</p>
-                    </a>
-                </form>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
-                    <p>Servicios</p>
-                </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
-                    <p>Servicios Realizados</p>
-                </a>
-                <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
+            </form>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=serviciosUso&action=showServicios">
+                <p>Servicios</p>
+            </a>
+            <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros">
+                <p>Servicios Realizados</p>
+            </a>
+            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
                     <p>Perros</p>
                 </a> -->
             <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=&action=">
