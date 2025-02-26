@@ -173,14 +173,14 @@ class EmpleadosView
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DNI</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 1</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 2</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre Completo</th>
+                        <!-- <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 1</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Apellido 2</th> -->
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Calle</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Número</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CP</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dirección</th>
+                        <!-- <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Número</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CP</th> -->
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Población</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Provincia</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
@@ -194,15 +194,10 @@ class EmpleadosView
                         foreach ($empleadosLista as $empleado) {
                             echo "<tr>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Nombre']) ? $empleado['Nombre'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Apellido1']) ? $empleado['Apellido1'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Apellido2']) ? $empleado['Apellido2'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Nombre']) ? $empleado['Nombre'] : '') . " " . (isset($empleado['Apellido1']) ? $empleado['Apellido1'] : '') . " " . (isset($empleado['Apellido2']) ? $empleado['Apellido2'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Email']) ? $empleado['Email'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Rol']) ? $empleado['Rol'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Calle']) ? $empleado['Calle'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Numero']) ? $empleado['Numero'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Cp']) ? $empleado['Cp'] : '') . "</td>
-                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Poblacion']) ? $empleado['Poblacion'] : '') . "</td>
+<td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Calle']) ? $empleado['Calle'] : '') . ", " . (isset($empleado['Numero']) ? $empleado['Numero'] : '') . ". " . (isset($empleado['Cp']) ? $empleado['Cp'] : '') . "</td>                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Poblacion']) ? $empleado['Poblacion'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Provincia']) ? $empleado['Provincia'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Tlfno']) ? $empleado['Tlfno'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Profesion']) ? $empleado['Profesion'] : '') . "</td>

@@ -32,7 +32,7 @@ class Clientes extends Basedatos
             }
 
             // Insertar nuevo cliente
-            $sql = "INSERT INTO " . $this->table . " (Dni, Nombre, Apellido1, Apellido2, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO " . $this->table . " (Dni, Nombre, Apellido1, Apellido2, Direccion, Tlfno) VALUES (?, ?, ?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $dni);
             $sentencia->bindParam(2, $nombre);

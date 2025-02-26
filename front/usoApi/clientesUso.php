@@ -98,6 +98,7 @@ class ClientesUso
             $this->showFormController();            
             return;
         }
+        echo "<script>alert('" . $clientesLista['mensaje'] . "');</script>";
         $this->showClientes();
    }
     //funcion para borrar un cliente
