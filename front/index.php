@@ -17,7 +17,7 @@
                 <a class="text-purple-500 font-semibold text-xl" href="index.php">
                     <p>Home</p>
                 </a>
-                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=">
+                <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
                     <p>Empleados</p>
                 </a>
                 <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">

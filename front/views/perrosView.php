@@ -61,7 +61,7 @@ class PerrosView
     {
     ?>
         <!-- Lista de clientes -->
-        <div class="bg-white dark:bg-black p-4 rounded shadow mb-4 overflow-x-auto">
+        <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50 dark:bg-gray-600">

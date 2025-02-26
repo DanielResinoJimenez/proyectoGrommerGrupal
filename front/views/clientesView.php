@@ -11,30 +11,30 @@ class ClientesView
                 <form id="crearClienteForm" class="space-y-2 text-left" method="POST" action="http://localhost/gromer/front/index.php?controller=clientesUso&action=createCliente">
                     <div>
                         <label for="dni" class="block text-sm font-medium text-blue-400">DNI</label>
-                        <input type="text" id="dni" value="<?php echo isset($_POST['dni']) ? $_POST['dni'] : '' ?>" name="dni" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="dni" value="<?php echo isset($_POST['dni']) ? $_POST['dni'] : '' ?>" name="dni" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div>
                         <label for="nombre" class="block text-sm font-medium text-blue-400">Nombre</label>
-                        <input type="text" id="nombre" value="<?php echo isset($_POST['nombre']) ? $_POST['nombre'] : '' ?>" name="nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="nombre" value="<?php echo isset($_POST['nombre']) ? $_POST['nombre'] : '' ?>" name="nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div>
                         <label for="apellido1" class="block text-sm font-medium text-blue-400">Apellido 1</label>
-                        <input type="text" id="apellido1" value="<?php echo isset($_POST['apellido1']) ? $_POST['apellido1'] : '' ?>" name="apellido1" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="apellido1" value="<?php echo isset($_POST['apellido1']) ? $_POST['apellido1'] : '' ?>" name="apellido1" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div>
                         <label for="apellido2" class="block text-sm font-medium text-blue-400">Apellido 2</label>
-                        <input type="text" id="apellido2" value="<?php echo isset($_POST['apellido2']) ? $_POST['apellido2'] : '' ?>" name="apellido2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="apellido2" value="<?php echo isset($_POST['apellido2']) ? $_POST['apellido2'] : '' ?>" name="apellido2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div>
                         <label for="direccion" class="block text-sm font-medium text-blue-400">Dirección</label>
-                        <input type="text" id="direccion" value="<?php echo isset($_POST['direccion']) ? $_POST['direccion'] : '' ?>" name="direccion" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="direccion" value="<?php echo isset($_POST['direccion']) ? $_POST['direccion'] : '' ?>" name="direccion" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div>
                         <label for="telefono" class="block text-sm font-medium text-blue-400">Teléfono</label>
-                        <input type="text" id="telefono" value="<?php echo isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>" name="telefono" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <input required type="text" id="telefono" value="<?php echo isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>" name="telefono" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     </div>
                     <div class="flex justify-end">
-                        <button type="button" onclick="window.location.href='http://localhost/gromer/front/index.php?controller=clientesUso&action=showClientes'" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancelar</button>
+                        <button type="button" onclick="window.location.href='http://localhost/gromer/front/index.php?controller=clientesUso&action=createCliente'" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancelar</button>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Crear Cliente</button>
                     </div>
                 </form>
@@ -58,7 +58,7 @@ class ClientesView
                     <!-- <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar Cliente</button> -->
                     <!-- <input type="hidden" name="controller" value="clientesUso">
                     <input type="hidden" name="action" value="getCliente"> -->
-                    <input oninput="this.form.submit();" type="search" id="default-search" name="dniInfo" class="w-[200px] p-2 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2" value='<?php echo $_POST['dniInfo'] ?>' placeholder="Introduce DNI" autofocus />
+                    <input oninput="this.form.submit();" type="search" id="default-search" name="dniInfo" class="w-[200px] p-2 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2" value='<?php echo isset($_POST['dniInfo']) ? $_POST['dniInfo'] : '' ?>' placeholder="Introduce DNI" autofocus />
                 </form>
             </div>
             <script>
