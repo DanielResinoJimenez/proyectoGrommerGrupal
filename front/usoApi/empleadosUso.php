@@ -22,7 +22,7 @@ class EmpleadosUso
     {
         // URL base de la API local
         $base_url = 'http://localhost/gromer/api/controllers/empleadosController.php';
-    
+
         // Petición GET
         $get_url = $base_url . '?accion=listarEmpleados';
         $ch = curl_init($get_url);
@@ -36,7 +36,7 @@ class EmpleadosUso
             // echo '<pre>';
             // echo 'Respuesta JSON: ' . $get_response;
             // echo '</pre>';
-    
+
             $data = json_decode($get_response, true);
             if (json_last_error() === JSON_ERROR_NONE) {
                 $empleadosLista = $data;
@@ -46,43 +46,43 @@ class EmpleadosUso
             }
         }
         curl_close($ch);
-    
+
         $this->view->showAllEmpleados($empleadosLista);
     }
 
     //Funcion para obtener un empleado por dni
     public function getEmpleadoByDNI()
-{
-    if (isset($_GET['dni'])) {
-        $dni = $_GET['dni'];
+    {
+        if (isset($_GET['dni'])) {
+            $dni = $_GET['dni'];
 
-        // URL base de la API local
-        $base_url = 'http://localhost/DWES/UT_7/gromer/api/controllers/empleadosController.php';
+            // URL base de la API local
+            $base_url = 'http://localhost/gromer/api/controllers/empleadosController.php';
 
-        // Petición GET con DNI
-        $get_url = $base_url . '?accion=buscarEmpleado&dni=' . urlencode($dni);
-        $ch = curl_init($get_url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        $get_response = curl_exec($ch);
-        if ($get_response === false) {
-            echo 'Error en la petición GET: ' . curl_error($ch);
-        } else {
-            $data = json_decode($get_response, true);
-            if (json_last_error() === JSON_ERROR_NONE) {
-                $empleadosLista = $data;
+            // Petición GET con DNI
+            $get_url = $base_url . '?accion=buscarEmpleado&dni=' . urlencode($dni);
+            $ch = curl_init($get_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPGET, true);
+            $get_response = curl_exec($ch);
+            if ($get_response === false) {
+                echo 'Error en la petición GET: ' . curl_error($ch);
             } else {
-                echo 'Error al decodificar la respuesta JSON: ' . json_last_error_msg();
-                $empleadosLista = [];
+                $data = json_decode($get_response, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $empleadosLista = $data;
+                } else {
+                    echo 'Error al decodificar la respuesta JSON: ' . json_last_error_msg();
+                    $empleadosLista = [];
+                }
             }
-        }
-        curl_close($ch);
+            curl_close($ch);
 
-        $this->view->showAllEmpleados([$empleadosLista]);
-    } else {
-        echo 'DNI no proporcionado';
+            $this->view->showAllEmpleados([$empleadosLista]);
+        } else {
+            echo 'DNI no proporcionado';
+        }
     }
-}
     //Funcion para mostrar el formulario de creacion de empleados
     public function showFormController()
     {
@@ -105,7 +105,6 @@ class EmpleadosUso
                     curl_setopt($ch, CURLOPT_POST, true);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
                     $post_response = curl_exec($ch);
-                   
   
                     if ($post_response === false) {
                         echo 'Error en la petición POST: ' . curl_error($ch);
@@ -150,7 +149,6 @@ class EmpleadosUso
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
             $post_response = curl_exec($ch);
-            
             if ($post_response === false) {
                 echo 'Error en la petición POST: ' . curl_error($ch);
             } else {
@@ -162,9 +160,7 @@ class EmpleadosUso
                  echo "<script>alert('" . $empleadosLista['mensaje'] . "');</script>";
                  $this->showFormController($empleadosLista);            
                  return;
-             }else {
-                echo "<script>alert('El empleado con DNI: " . $_POST['dni'] . " ya existe');</script>";
-            }
+             }
              $this->showempleados();
         }
 }

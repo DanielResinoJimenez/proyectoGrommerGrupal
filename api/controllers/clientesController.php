@@ -1,5 +1,5 @@
 <?php
-require_once ('../services/Clientes.php');
+require_once('../services/Clientes.php');
 
 $clientes = new Clientes();
 
@@ -43,7 +43,7 @@ if (isset($_GET['accion'])) {
         case 'obtener':
             if (isset($_GET['dni'])) {
                 $dni = $_GET['dni'];
-                $cliente = $clientes->getCliente($dni);
+                $cliente = $clientes->getClientes($dni);
                 echo json_encode($cliente);
             } else {
                 echo json_encode(["mensaje" => "Faltan datos"]);
@@ -67,7 +67,3 @@ if (isset($_GET['accion'])) {
 } else {
     echo json_encode(["mensaje" => "No se recibió ninguna acción"]);
 }
-?>
-
-
-
