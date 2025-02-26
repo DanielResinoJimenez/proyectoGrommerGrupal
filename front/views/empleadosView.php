@@ -85,46 +85,7 @@ class EmpleadosView
     <?php
     }
 
-    public function showSearchEmpleadoByDNIForm()
-    {
-    ?>
-        <!-- Formulario para buscar empleado por DNI -->
-        <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Buscar Empleado por DNI</h2>
-            <form action="../index.php?controller=empleados&action=addEmpleado" method="get">
-                <div class="form-group">
-                    <label for="buscarDni" class="block text-gray-700">DNI</label>
-                    <input type="text" class="form-control w-full border rounded-lg py-3 px-4" id="buscarDni" name="dni" required>
-                </div>
-
-                <button type="submit" class="w-48 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg mt-6 mx-auto block">Buscar</button>
-            </form>
-        </div>
-    <?php
-
-
-    }
-
-    public function showDeleteEmpleadoForm()
-    {
-    ?>
-        <!-- Formulario para eliminar empleado por DNI -->
-        <!-- Formulario para eliminar empleado por DNI -->
-        <div class="bg-white p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Eliminar Empleado</h2>
-
-            <form action="../index.php?controller=empleados&action=addEmpleado" method="post">
-                <input type="hidden" name="_method" value="DELETE">
-                <div class="form-group">
-                    <label for="eliminarDni" class="block text-gray-700">DNI</label>
-                    <input type="text" class="form-control w-full border rounded-lg py-3 px-4" id="eliminarDni" name="dni" required>
-                </div>
-
-                <button type="submit" class="w-48 bg-red-500 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg mt-6 mx-auto block">Eliminar</button>
-            </form>
-        </div>
-    <?php
-    }
+    
     public function showEmpleados($empleadosLista)
     {
     ?>
