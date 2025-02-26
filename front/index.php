@@ -20,14 +20,14 @@
             <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
                 <p>Empleados</p>
             </a>
-            <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
+            <!-- <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
                 <input type="hidden" name="dniInfo" value="">
                 <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
                     <p>Clientes</p>
                 </a>
                 <a class="text-purple-500 font-semibold text-xl" href="index.php?controller=empleadosUso&action=showEmpleados">
                     <p>Empleados</p>
-                </a>
+                </a> -->
                 <form id="clientesForm" action="./index.php?controller=clientesUso&action=showClientes" method="post" style="display: inline;">
                     <input type="hidden" name="dniInfo" value="">
                     <a class="text-purple-500 font-semibold text-xl" href="#" onclick="document.getElementById('clientesForm').submit();">
