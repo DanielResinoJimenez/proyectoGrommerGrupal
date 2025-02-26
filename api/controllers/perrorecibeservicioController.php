@@ -1,7 +1,7 @@
 <?php
 
-require_once ('./../bd.php');
-require_once ('./../services/PerroRecibeServicio.php');
+require_once('./../bd.php');
+require_once('./../services/PerroRecibeServicio.php');
 $dep = new PerroRecibeServicio();
 
 @header("Content-type: application/json");
@@ -59,4 +59,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // En caso de que ninguna de las opciones anteriores se haya ejecutado
 header("HTTP/1.1 400 Bad Request");
 echo json_encode(["message" => "Solicitud no válida"]);
-?>

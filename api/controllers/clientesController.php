@@ -35,7 +35,8 @@ if (isset($_GET['accion'])) {
             break;
 
         case 'listar':
-            $clientesLista = $clientes->getClientes();
+            $dniInfo = isset($_GET['dniInfo']) ? $_GET['dniInfo'] : '';
+            $clientesLista = $clientes->getClientes($dniInfo);
             echo json_encode($clientesLista);
             break;
 

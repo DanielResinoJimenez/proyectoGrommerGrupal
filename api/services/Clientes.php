@@ -32,7 +32,7 @@ class Clientes extends Basedatos
             }
 
             // Insertar nuevo cliente
-            $sql = "INSERT INTO " . $this->table . " (Dni, Nombre, Apellido1, Apellido2, Direccion, Telefono) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO " . $this->table . " (Dni, Nombre, Apellido1, Apellido2, Direccion, Tlfno) VALUES (?, ?, ?, ?, ?, ?)";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $dni);
             $sentencia->bindParam(2, $nombre);
@@ -80,10 +80,10 @@ class Clientes extends Basedatos
     }
 
 
-    public function getClientes()
+    public function getClientes($dni)
     {
         try {
-            $sql = "SELECT * FROM CLIENTES";
+            $sql = "SELECT * FROM CLIENTES WHERE Dni LIKE '" . $dni . "%'";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->execute();
             $clientes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -93,18 +93,18 @@ class Clientes extends Basedatos
         }
     }
 
-    public function getCliente($dni)
-    {
-        try {
-            $sql = "SELECT * FROM CLIENTES WHERE Dni = '" . $dni . "'";
-            $sentencia = $this->conexion->prepare($sql);
-            $sentencia->execute();
-            $cliente = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-            return $cliente;
-        } catch (PDOException $e) {
-            return "ERROR AL obtener.<br>" . $e->getMessage();
-        }
-    }
+    // public function getCliente($dni)
+    // {
+    //     try {
+    //         $sql = "SELECT * FROM CLIENTES WHERE Dni LIKE '" . $dni . "%'";
+    //         $sentencia = $this->conexion->prepare($sql);
+    //         $sentencia->execute();
+    //         $cliente = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    //         return $cliente;
+    //     } catch (PDOException $e) {
+    //         return "ERROR AL obtener.<br>" . $e->getMessage();
+    //     }
+    // }
     public function getPerrosCliente($dni)
     {
         try {

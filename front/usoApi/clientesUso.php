@@ -24,7 +24,7 @@ class ClientesUso
         $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
 
         // Petición GET
-        $get_url = $base_url . '?accion=obtener&dni=' . $_GET['dni'];
+        $get_url = $base_url . '?accion=obtener&dni=' . $_POST['dni'];
         $ch = curl_init($get_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -48,11 +48,12 @@ class ClientesUso
     // Función que muestra la vista de clientes
     public function showClientes()
     {
+        $dni = isset($_POST['dniInfo']) ? $_POST['dniInfo'] : '';
         // URL base de la API local
         $base_url = 'http://localhost/gromer/api/controllers/clientesController.php';
 
         // Petición GET
-        $get_url = $base_url . '?accion=listar';
+        $get_url = $base_url . '?accion=listar&dniInfo='.$dni;
         $ch = curl_init($get_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -64,7 +65,6 @@ class ClientesUso
             $clientesLista = $data;
         }
         curl_close($ch);
-
 
         $this->view->getAllClientes($clientesLista);
     }
@@ -98,6 +98,7 @@ class ClientesUso
             $this->showFormController();            
             return;
         }
+        echo "<script>alert('" . $clientesLista['mensaje'] . "');</script>";
         $this->showClientes();
    }
     //funcion para borrar un cliente
