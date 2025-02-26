@@ -8,7 +8,7 @@ class PerrosView
 ?>
         <div id="modal" class="fixed inset-0 bg-gray-600 dark:bg-gray-400 bg-opacity-50 flex items-center justify-center ">
             <div class="bg-white dark:bg-black p-4 rounded shadow-lg w-1/2">
-                <h2 class="text-xl font-bold mb-2">Crear Cliente</h2>
+                <h2 class="text-xl font-bold mb-2">Crear un nuevo perro</h2>
                 <form id="crearNuevoPerro" class="space-y-4" method="POST" action="http://localhost/gromer/front/index.php?controller=perrosUso&action=crearPerro">
                     <div>
                         <label for="dni" class="block text-sm font-medium text-gray-700 dark:text-gray-200">DNI del dueño:</label>
@@ -47,7 +47,7 @@ class PerrosView
                         <input type="text" id="sexo" name="sexo" class="mt-1 block w-full border border-gray-300 dark:border-gray-700 rounded-md shadow-sm p-2">
                     </div>
                     <div class="flex justify-end">
-                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancelar</button>
+                        <a href="http://localhost/gromer/front/index.php?controller=perrosUso&action=mostrarPerrosPorCliente&clienteDni="><button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancelar</button></a>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Registrar Nuevo Perro</button>
                     </div>
                 </form>
@@ -60,9 +60,11 @@ class PerrosView
     public function mostrarPerrosPorCliente($perrosCliente)
     {
     ?>
+
         <!-- Lista de clientes -->
-        <div class="bg-white dark:bg-black p-4 rounded shadow mb-4 overflow-x-auto">
+        <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold mb-2">Lista de Clientes</h2>
+            <a href="http://localhost/gromer/front/index.php?controller=perrosUso&action=showFormController"><button class="bg-green-500 text-white px-4 py-2 rounded">Insertar nuevo perro</button></a>
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50 dark:bg-gray-600">
                     <tr>
