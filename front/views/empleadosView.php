@@ -28,7 +28,6 @@ class EmpleadosView
                         <label for="rol" class="block text-gray-700">Rol</label>
                         <select class="form-control w-full border rounded-lg py-3 px-4" id="rol" name="rol" required>
                             <option value="EMPLEADO">EMPLEADO</option>
-                            <option value="AUXILIAR">AUXILIAR</option>
                             <option value="ADMIN">ADMIN</option>
                         </select>
                     </div>
