@@ -197,13 +197,12 @@ class EmpleadosView
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Nombre']) ? $empleado['Nombre'] : '') . " " . (isset($empleado['Apellido1']) ? $empleado['Apellido1'] : '') . " " . (isset($empleado['Apellido2']) ? $empleado['Apellido2'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Email']) ? $empleado['Email'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Rol']) ? $empleado['Rol'] : '') . "</td>
-<td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Calle']) ? $empleado['Calle'] : '') . ", " . (isset($empleado['Numero']) ? $empleado['Numero'] : '') . ". " . (isset($empleado['Cp']) ? $empleado['Cp'] : '') . "</td>                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Poblacion']) ? $empleado['Poblacion'] : '') . "</td>
+                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Calle']) ? $empleado['Calle'] : '') . ", " . (isset($empleado['Numero']) ? $empleado['Numero'] : '') . ". " . (isset($empleado['Cp']) ? $empleado['Cp'] : '') . "</td>                                    <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Poblacion']) ? $empleado['Poblacion'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Provincia']) ? $empleado['Provincia'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Tlfno']) ? $empleado['Tlfno'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>" . (isset($empleado['Profesion']) ? $empleado['Profesion'] : '') . "</td>
                                     <td class='px-4 py-2 text-left whitespace-nowrap'>
-                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=editEmpleado&dni=" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "' class='text-blue-600 hover:text-blue-800'>Editar</a>
-                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=deleteEmpleado&dni=" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "' class='text-red-600 hover:text-red-800'>Eliminar</a>
+                                        <a href='http://localhost/gromer/front/index.php?controller=empleadosUso&action=deleteEmpleado&dni=" . (isset($empleado['Dni']) ? $empleado['Dni'] : '') . "' class='bg-red-500 text-white px-4 py-2 rounded dark:bg-red-700'>Eliminar</a>
                                     </td>
                                 </tr>";
                         }
