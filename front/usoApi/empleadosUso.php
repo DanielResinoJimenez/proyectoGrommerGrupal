@@ -105,6 +105,7 @@ class EmpleadosUso
                     curl_setopt($ch, CURLOPT_POST, true);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
                     $post_response = curl_exec($ch);
+                   
   
                     if ($post_response === false) {
                         echo 'Error en la petición POST: ' . curl_error($ch);
@@ -149,6 +150,7 @@ class EmpleadosUso
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
             $post_response = curl_exec($ch);
+            
             if ($post_response === false) {
                 echo 'Error en la petición POST: ' . curl_error($ch);
             } else {
@@ -160,7 +162,9 @@ class EmpleadosUso
                  echo "<script>alert('" . $empleadosLista['mensaje'] . "');</script>";
                  $this->showFormController($empleadosLista);            
                  return;
-             }
+             }else {
+                echo "<script>alert('El empleado con DNI: " . $_POST['dni'] . " ya existe');</script>";
+            }
              $this->showempleados();
         }
 }
