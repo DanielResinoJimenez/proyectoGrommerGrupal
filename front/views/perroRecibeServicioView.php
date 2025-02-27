@@ -7,7 +7,7 @@ class PerroRecibeServicio
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         if (!$isLoggedIn) {
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
@@ -43,8 +43,8 @@ class PerroRecibeServicio
                             ?>
                         </select>
                     </div>
-                        <input type="hidden" id="fecha_nto" name="fecha" value="<?php echo date('Y-m-d'); ?>">
-                        <input type="hidden" id="raza" name="empleado_id" value="<?php echo isset($_COOKIE['user']) ? $_COOKIE['user'] : ''; ?>">
+                    <input type="hidden" id="fecha_nto" name="fecha" value="<?php echo date('Y-m-d'); ?>">
+                    <input type="hidden" id="raza" name="empleado_id" value="<?php echo isset($_COOKIE['user']) ? $_COOKIE['user'] : ''; ?>">
                     <div>
                         <label for="peso" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio final:</label>
                         <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2" readonly>
@@ -53,7 +53,7 @@ class PerroRecibeServicio
                                 var selectedService = this.value;
                                 var servicios = <?php echo json_encode($servicios); ?>;
                                 var precioFinalInput = document.getElementById('peso');
-                                
+
                                 for (var i = 0; i < servicios.length; i++) {
                                     if (servicios[i]['Codigo'] == selectedService) {
                                         precioFinalInput.value = servicios[i]['Precio'];
@@ -84,7 +84,7 @@ class PerroRecibeServicio
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         // $isAdmin = false;
         if (!$isLoggedIn) {
@@ -107,7 +107,8 @@ class PerroRecibeServicio
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Fecha</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Incidencias</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Precio final</th>
-                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Dni del cliente</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Dni del Empleado</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="listaServPorPerro" class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
