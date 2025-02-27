@@ -45,11 +45,8 @@ class PerrosUso
             $data = json_decode($get_response, true);
 
             // Verificar si la respuesta es válida y contiene datos
-            if ($data) {
-                $this->view->mostrarPerrosPorCliente($data);
-            } else {
-                echo "<script>alert('No se encontraron perros para este cliente o hubo un error en la respuesta');</script>";
-            }
+
+            $this->view->mostrarPerrosPorCliente($data);
         }
 
         // Cerrar cURL

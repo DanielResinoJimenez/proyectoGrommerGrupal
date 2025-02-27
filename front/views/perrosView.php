@@ -8,7 +8,7 @@ class PerrosView
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         // $isAdmin = false;
         if (!$isLoggedIn) {
@@ -76,7 +76,7 @@ class PerrosView
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         // $isAdmin = false;
         if (!$isLoggedIn) {
@@ -101,12 +101,13 @@ class PerrosView
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Observaciones</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Número de chip</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Sexo</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="listaPerros" class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                     <?php
 
-                    if (is_array($perrosCliente)) {
+                    if ($perrosCliente) {
                         foreach ($perrosCliente as $perro) {
                             echo "<tr>";
                             echo "<td class='px-4 py-2 whitespace-nowrap dark:text-gray-300'>{$perro['Dni_duenio']}</td>";
@@ -128,7 +129,7 @@ class PerrosView
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='8' class='text-center font-bold text-xl text-red-500 dark:bg-gray-700'>No hay perros asignados a este cliente</td></tr>";
+                        echo "<tr><td colspan='9' class='text-center font-bold text-xl text-red-500 dark:bg-gray-700'>No hay perros asignados a este cliente</td></tr>";
 
                     ?>
                 </tbody>
