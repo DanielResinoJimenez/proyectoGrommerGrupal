@@ -48,14 +48,6 @@ if (darkMode) document.documentElement.classList.add('dark');
           $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
           if ($isLoggedIn) {
             ?>
-            <!-- <a class="text-purple-500 font-semibold text-xl" href="index.php">
-                <div class="w-20 h-10 rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 transition-all duration-500 border-2 border-gray-500" :class="{ 'from-blue-400 to-indigo-500': checked }">
-                    <div class="mt-[2px] mx-[2px] bg-white rounded-full h-8 w-8 flex items-center justify-center transition-all duration-500 transform" :class="{ 'translate-x-10': checked }">
-                        <span x-show="!checked">☀️</span>
-                        <span x-show="checked">🌙</span>
-                    </div>
-                </div>
-            </label> -->
             <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php">
                 <p>Home</p>
             </a>
@@ -67,7 +59,7 @@ if (darkMode) document.documentElement.classList.add('dark');
                 <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="#" onclick="document.getElementById('clientesForm').submit();">
                     <p>Clientes</p>
                 </a>
-          </form>
+            </form>
                 <a class="text-purple-500 font-semibold text-xl dark:text-purple-300" href="index.php?controller=serviciosUso&action=showServicios">
                     <p>Servicios</p>
                 </a>
@@ -85,7 +77,7 @@ if (darkMode) document.documentElement.classList.add('dark');
             ?>
         </div>
     </header>
-    <div class="container mx-auto text-center">
+    <div class="conatiner m-auto text-center">
         <?php
         // Incluye el front controller
         require_once __DIR__ . '/FrontController.php';

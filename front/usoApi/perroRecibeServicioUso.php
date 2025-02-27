@@ -12,6 +12,42 @@ class PerroRecibeServicioUso
         $this->view = new PerroRecibeServicio();
     }
 
+
+    public function getAllPerrosForm(){
+
+        // URL de la API
+        $base_url = 'http://localhost/gromer/api/controllers/clientesController.php?accion=perros';
+        // Iniciar cURL
+        $ch = curl_init($base_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Ejecutar la solicitud
+        $get_response = curl_exec($ch);
+        if ($get_response === false) {
+            echo 'Error en la petición GET: ' . curl_error($ch);
+        } else {
+            $data = json_decode($get_response, true);
+            return $data;
+        }
+        // Cerrar cURL
+        curl_close($ch);
+    }
+
+    public function getAllServiciosForm(){
+        $base_url = 'http://localhost/gromer/api/controllers/servicioController.php';
+        // Petición GET
+        $ch = curl_init($base_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        $get_response = curl_exec($ch);
+        if ($get_response === false) {
+            echo 'Error en la petición GET: ' . curl_error($ch);
+        } else {
+            $data = json_decode($get_response, true);
+            return $data;
+        }
+        curl_close($ch);
+    }
+
     //Función mostrar servicios realizados a perros
     public function mostrarServiciosPorPerros()
     {
@@ -33,18 +69,9 @@ class PerroRecibeServicioUso
             echo 'Error en la petición GET: ' . curl_error($ch);
         } 
             $data = json_decode($get_response, true);
-
-
-            // Verificar si la respuesta es válida y contiene datos
-            // if ($data) {
-            // }
-            //  else {
-                //     echo "<script>alert('No se han encontrado servicios');</script>";
-                // }
-            
-            // Cerrar cURL
-            curl_close($ch);
-            $this->view->mostrarServiciosPorPerro($data);
+        // Cerrar cURL
+        curl_close($ch);
+        $this->view->mostrarServiciosPorPerro($data);
 
 
     }
@@ -146,6 +173,8 @@ class PerroRecibeServicioUso
     //Funcion para mostrar el formulario de creacion de servicios realizados a perros
     public function showFormServ()
     {
-        $this->view->showFormServ();
+        $perros = $this->getAllPerrosForm();
+        $servicios = $this->getAllServiciosForm();
+        $this->view->showFormServ($perros, $servicios);
     }
 }

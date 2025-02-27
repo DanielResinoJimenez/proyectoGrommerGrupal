@@ -130,4 +130,18 @@ class Clientes extends Basedatos
             return "Error al obtener los perros: " . $e->getMessage();
         }
     }
+
+    public function getPerros()
+    {
+        try {
+            $sql_perros = "SELECT * FROM PERROS";
+            $sentencia_perros = $this->conexion->prepare($sql_perros);
+            $sentencia_perros->execute();
+            $perros = $sentencia_perros->fetchAll(PDO::FETCH_ASSOC);
+
+            return $perros;
+        } catch (PDOException $e) {
+            return "Error al obtener los perros: " . $e->getMessage();
+        }
+    }
 }

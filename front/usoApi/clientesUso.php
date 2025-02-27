@@ -179,6 +179,7 @@ class ClientesUso
                 // Guardar en cookies que el usuario ha iniciado sesión
                 setcookie('loggedIn', 'true', time() + (86400 * 30), "/"); // 86400 = 1 day
                 setcookie('rol', $data['rol'], time() + (86400 * 30), "/"); // 86400 = 1 day
+                setcookie('user', $data['dni'], time() + (86400 * 30), "/"); // 86400 = 1 day
                 // Redirigir a la página de clientes
                 header('Location: http://localhost/gromer/front/index.php?controller=HomeUso&action=showHome');
                 exit();

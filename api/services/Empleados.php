@@ -30,6 +30,13 @@ class Empleados extends Basedatos
                 return "El Empleado ya está dado de alta";
             }
 
+            $sql = "SELECT Email FROM " . $this->table . " WHERE Email = '" . $email . "'";
+            $emailExiste = $this->conexion->query($sql)->fetchColumn();
+
+            if ($emailExiste) {
+                return "El Email ya está registrado";
+            }
+
             // Cifrar password
             $passwordCifrada = password_hash($password, PASSWORD_BCRYPT);
 
@@ -50,7 +57,7 @@ class Empleados extends Basedatos
             $sentencia->bindParam(13, $tlfno);
             $sentencia->bindParam(14, $profesion);
             $sentencia->execute();
-            return "Empleado DNI: " . $dni . " insertado correctamente";
+            return "Empleado insertado correctamente";
         } catch (PDOException $e) {
             return "ERROR AL ingresar.<br>" . $e->getMessage();
         }
@@ -91,7 +98,7 @@ class Empleados extends Basedatos
 
     public function getPassMail($email){
         try {
-            $sql = "SELECT Email, Password, Rol FROM " . $this->table . " WHERE Email = ?";
+            $sql = "SELECT Email, Password, Rol, Dni FROM " . $this->table . " WHERE Email = ?";
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(1, $email);
             $sentencia->execute();

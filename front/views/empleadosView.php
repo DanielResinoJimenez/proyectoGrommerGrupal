@@ -13,6 +13,11 @@ class EmpleadosView
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
             exit();
         }
+        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+        if (!$isAdmin) {
+            header('Location: http://localhost/gromer/front/index.php?controller=empleadosUso&action=showEmpleados');
+            exit();
+        }
 ?>
         <!-- Formulario para agregar un nuevo empleado -->
         <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg mb-8 max-w-3xl mx-auto">
@@ -22,66 +27,66 @@ class EmpleadosView
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
                         <label for="dni" class="block text-gray-700 dark:text-gray-300">DNI</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="dni" name="dni" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['dni'])? $_POST['dni'] : '' ?>" id="dni" name="dni" required>
                     </div>
                     <div class="form-group">
                         <label for="email" class="block text-gray-700 dark:text-gray-300">Email</label>
-                        <input type="email" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="email" name="email" required>
+                        <input type="email" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['email'])? $_POST['email'] : '' ?>" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="password" class="block text-gray-700 dark:text-gray-300">Password</label>
-                        <input type="password" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="password" name="password" required>
+                        <input type="password" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['password'])? $_POST['password'] : '' ?>" id="password" name="password" required>
                     </div>
                     <div class="form-group">
                         <label for="rol" class="block text-gray-700 dark:text-gray-300">Rol</label>
                         <select class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="rol" name="rol" required>
-                            <option value="EMPLEADO">EMPLEADO</option>
-                            <option value="ADMIN">ADMIN</option>
+                            <option <?php echo (isset($_POST['rol']) && $_POST['rol'] === 'EMPLEADO') ? 'selected' : ''; ?> value="EMPLEADO" >EMPLEADO</option>
+                            <option <?php echo (isset($_POST['rol']) && $_POST['rol'] === 'ADMIN') ? 'selected' : ''; ?> value="ADMIN" >ADMIN</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="nombre" class="block text-gray-700 dark:text-gray-300">Nombre</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['nombre'])? $_POST['nombre'] : '' ?>" id="nombre" name="nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="apellido1" class="block text-gray-700 dark:text-gray-300">Apellido 1</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="apellido1" name="apellido1" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['apellido1'])? $_POST['apellido1'] : '' ?>" id="apellido1" name="apellido1" required>
                     </div>
                     <div class="form-group">
                         <label for="apellido2" class="block text-gray-700 dark:text-gray-300">Apellido 2</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="apellido2" name="apellido2" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['apellido2'])? $_POST['apellido2'] : '' ?>" id="apellido2" name="apellido2" required>
                     </div>
                     <div class="form-group">
                         <label for="calle" class="block text-gray-700 dark:text-gray-300">Calle</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="calle" name="calle" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['calle'])? $_POST['calle'] : '' ?>" id="calle" name="calle" required>
                     </div>
                     <div class="form-group">
                         <label for="numero" class="block text-gray-700 dark:text-gray-300">Número</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="numero" name="numero" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['numero'])? $_POST['numero'] : '' ?>" id="numero" name="numero" required>
                     </div>
                     <div class="form-group">
                         <label for="cp" class="block text-gray-700 dark:text-gray-300">Código Postal</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="cp" name="cp" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['cp'])? $_POST['cp'] : '' ?>" id="cp" name="cp" required>
                     </div>
                     <div class="form-group">
                         <label for="poblacion" class="block text-gray-700 dark:text-gray-300">Población</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="poblacion" name="poblacion" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['poblacion'])? $_POST['poblacion'] : '' ?>" id="poblacion" name="poblacion" required>
                     </div>
                     <div class="form-group">
                         <label for="provincia" class="block text-gray-700 dark:text-gray-300">Provincia</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="provincia" name="provincia" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['provincia'])? $_POST['provincia'] : '' ?>" id="provincia" name="provincia" required>
                     </div>
                     <div class="form-group">
                         <label for="tlfno" class="block text-gray-700 dark:text-gray-300">Teléfono</label>
-                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="tlfno" name="tlfno" required>
+                        <input type="text" class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" value="<?php echo isset($_POST['tlfno'])? $_POST['tlfno'] : '' ?>" id="tlfno" name="tlfno" required>
                     </div>
                     <div class="form-group">
                         <label for="profesion" class="block text-gray-700 dark:text-gray-300">Profesión</label>
                         <select class="form-control w-full border rounded-lg py-3 px-4 dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="profesion" name="profesion" required>
-                            <option value="ESTILISTA">ESTILISTA</option>
-                            <option value="NUTRICIONISTA">NUTRICIONISTA</option>
-                            <option value="AUXILIAR">AUXILIAR</option>
-                            <option value="ATT.CLIENTE">ATT.CLIENTE</option>
+                            <option <?php echo (isset($_POST['profesion']) && $_POST['profesion'] === 'ESTILISTA') ? 'selected' : ''; ?> value="ESTILISTA">ESTILISTA</option>
+                            <option <?php echo (isset($_POST['profesion']) && $_POST['profesion'] === 'NUTRICIONISTA') ? 'selected' : ''; ?> value="NUTRICIONISTA">NUTRICIONISTA</option>
+                            <option <?php echo (isset($_POST['profesion']) && $_POST['profesion'] === 'AUXILIAR') ? 'selected' : ''; ?> value="AUXILIAR">AUXILIAR</option>
+                            <option <?php echo (isset($_POST['profesion']) && $_POST['profesion'] === 'ATT.CLIENTE') ? 'selected' : ''; ?> value="ATT.CLIENTE">ATT.CLIENTE</option>
                         </select>
                     </div>
                 </div>
@@ -202,9 +207,16 @@ class EmpleadosView
         <div class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-4 overflow-x-auto">
             <h2 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-2">Nuestros Empleados</h2>
             <div class="flex justify-between items-center mb-4">
+            <?php
+                $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+                if ($isAdmin) {
+            ?>
                 <a href="http://localhost/gromer/front/index.php?controller=empleadosUso&action=showFormController">
                     <button class="bg-green-500 text-white px-4 py-2 rounded dark:bg-green-700">Nuevo Empleado</button>
                 </a>
+            <?php
+                }
+            ?>
                 <div class="flex items-center">
                     <form method="GET" action="http://localhost/gromer/front/index.php">
                         <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar Empleado</button>

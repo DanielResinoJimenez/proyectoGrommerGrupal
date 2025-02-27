@@ -157,13 +157,14 @@ class EmpleadosUso
             $empleadosLista = $data;
         }
         curl_close($ch);
-        if (isset($empleadosLista['mensaje']) && $empleadosLista['mensaje'] == 'El empleado ya está dado de alta') {
-            echo "<script>alert('" . $empleadosLista['mensaje'] . "');</script>";
-            $this->showFormController($empleadosLista);
+        // print_r($empleadosLista);
+        if (isset($empleadosLista['message']) && $empleadosLista['message'] == 'Empleado insertado correctamente') {
+            echo "<script>alert('" . $empleadosLista['message'] . "');</script>";
+            $this->showempleados();
             return;
         } else {
-            echo "<script>alert('El empleado con DNI: " . $_POST['dni'] . " ya existe');</script>";
+            echo "<script>alert('". $empleadosLista['message'] ."');</script>";
+            $this->showFormController();
         }
-        $this->showempleados();
     }
 }

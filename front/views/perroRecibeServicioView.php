@@ -2,7 +2,7 @@
 
 class PerroRecibeServicio
 {
-    public function showFormServ()
+    public function showFormServ($perros, $servicios)
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -13,11 +13,6 @@ class PerroRecibeServicio
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
             exit();
         }
-        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
-        if (!$isAdmin) {
-            header('Location: http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros');
-            exit();
-        }
 ?>
         <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center dark:bg-gray-900 dark:bg-opacity-80">
             <div class="bg-white p-4 rounded shadow-lg w-1/2 dark:bg-gray-800">
@@ -25,23 +20,49 @@ class PerroRecibeServicio
                 <form id="crearNuevoServicio" class="space-y-4" method="POST" action="http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=crearServicioRealizadoAPerro">
                     <div>
                         <label for="dni" class="block text-sm font-medium text-gray-700 dark:text-gray-300">ID del perro:</label>
-                        <input required type="text" id="dni" name="perro_id" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
+                        <select required id="dni" name="perro_id" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
+                            <option value="">Seleccione un perro</option>
+                            <?php
+                            // Suponiendo que tienes un array $perros con los datos de los perros
+                            foreach ($perros as $perro) {
+                                echo "<option value='{$perro['ID_Perro']}'>{$perro['Nombre']} - {$perro['Raza']}</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div>
                         <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">ID del servicio:</label>
-                        <input required type="text" id="nombre" name="servicio_id" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
+                        <select required id="nombre" name="servicio_id" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
+                            <option value="">Seleccione un servicio</option>
+                            <?php
+                            // Suponiendo que tienes un array $servicios con los datos de los servicios
+                            foreach ($servicios as $servicio) {
+                                $selected = isset($_POST['servicio_id']) && $_POST['servicio_id'] == $servicio['Codigo'] ? 'selected' : '';
+                                echo "<option value='{$servicio['Codigo']}' $selected>{$servicio['Nombre']}</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
-                    <div>
-                        <label for="fecha_nto" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de la realización:</label>
-                        <input required type="date" id="fecha_nto" name="fecha" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
-                    </div>
-                    <div>
-                        <label for="raza" class="block text-sm font-medium text-gray-700 dark:text-gray-300">ID del empleado que lo realiza:</label>
-                        <input required type="text" id="raza" name="empleado_id" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
-                    </div>
+                        <input type="hidden" id="fecha_nto" name="fecha" value="<?php echo date('Y-m-d'); ?>">
+                        <input type="hidden" id="raza" name="empleado_id" value="<?php echo isset($_COOKIE['user']) ? $_COOKIE['user'] : ''; ?>">
                     <div>
                         <label for="peso" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio final:</label>
-                        <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2">
+                        <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2" readonly>
+                        <script>
+                            document.getElementById('nombre').addEventListener('change', function() {
+                                var selectedService = this.value;
+                                var servicios = <?php echo json_encode($servicios); ?>;
+                                var precioFinalInput = document.getElementById('peso');
+                                
+                                for (var i = 0; i < servicios.length; i++) {
+                                    if (servicios[i]['Codigo'] == selectedService) {
+                                        precioFinalInput.value = servicios[i]['Precio'];
+                                        break;
+                                    }
+                                }
+                            });
+                        </script>
+                        <!-- <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2"> -->
                     </div>
                     <div>
                         <label for="altura" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Incidencias:</label>
@@ -74,16 +95,9 @@ class PerroRecibeServicio
         <!-- Lista de Servicios hechos a los perros -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto dark:bg-gray-800">
             <h2 class="text-xl font-bold mb-2 dark:text-purple-400">Lista de Servicios hechos a los perros</h2>
-            <?php
-                $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
-                if ($isAdmin) {
-            ?>
             <a href="http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=showFormServ">
-                <button class="bg-green-500 text-white px-4 py-2 rounded dark:bg-green-700">Insertar un nuevo servicio realizado</button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded m-4 dark:bg-green-700">Insertar un nuevo servicio realizado</button>
             </a>
-            <?php
-                }
-            ?>
             <table class="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
@@ -96,7 +110,7 @@ class PerroRecibeServicio
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-300">Dni del cliente</th>
                     </tr>
                 </thead>
-                <tbody id="listaServPorPerro" class="bg-white divide-y divide-gray-200">
+                <tbody id="listaServPorPerro" class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                     <?php
 
                     if (is_array($servPorPerro) && count($servPorPerro) > 0) {
@@ -118,7 +132,7 @@ class PerroRecibeServicio
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='8' class='text-center font-bold text-xl text-red-500'>No hay servicios realizados disponibles.</td></tr>";
+                        echo "<tr><td colspan='8' class='text-center font-bold text-xl text-red-500 dark:text-red-400'>No hay servicios realizados disponibles.</td></tr>";
                     }
                     ?>
                 </tbody>

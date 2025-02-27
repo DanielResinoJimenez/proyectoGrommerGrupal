@@ -48,7 +48,7 @@ class ClientesView
                         <input required type="text" id="telefono" value="<?php echo isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>" name="telefono" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                     <div class="flex justify-end">
-                        <button type="button" onclick="window.location.href='http://localhost/gromer/front/index.php?controller=clientesUso&action=createCliente'" class="bg-gray-500 text-white px-4 py-2 rounded mr-2 dark:bg-gray-700">Cancelar</button>
+                        <a href='http://localhost/gromer/front/index.php?controller=clientesUso&action=showClientes'><button type="button"class="bg-gray-500 text-white px-4 py-2 rounded mr-2 dark:bg-gray-700">Cancelar</button></a>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded dark:bg-blue-700">Crear Cliente</button>
                     </div>
                 </form>
@@ -85,7 +85,7 @@ class ClientesView
                 </a>
                 <div class="flex items-center">
                     <form id='busqueda' method="POST" action="http://localhost/gromer/front/index.php?controller=clientesUso&action=showClientes">
-                        <input oninput="this.form.submit();" type="search" id="default-search" name="dniInfo" class="w-[200px] p-2 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2" value='<?php echo $_POST['dniInfo'] ?>' placeholder="Introduce DNI" autofocus />
+                        <input oninput="this.form.submit();" type="search" id="default-search" name="dniInfo" class="w-[200px] p-2 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2" value='<?php echo isset($_POST['dniInfo']) ? $_POST['dniInfo'] : '' ?>' placeholder="Introduce DNI" autofocus />
                     </form>
                 </div>
                 <script>

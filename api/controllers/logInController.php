@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $empleados->getPassMail($email);
 
         if ($user && password_verify($password, $user['Password'])) {
-            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso', 'rol' => $user['Rol']]);
+            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso', 'rol' => $user['Rol'], 'dni' => $user['Dni']]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Correo electrónico o contraseña inválidos']);
         }

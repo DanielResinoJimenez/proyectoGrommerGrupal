@@ -56,7 +56,8 @@ if (isset($_GET['accion'])) {
                 $perros = $clientes->getPerrosCliente($dni);
                 echo json_encode($perros);
             } else {
-                echo json_encode(["mensaje" => "Faltan datos"]);
+                $perrosAll = $clientes->getPerros();
+                echo json_encode($perrosAll);
             }
             break;
 
