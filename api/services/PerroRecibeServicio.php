@@ -29,7 +29,7 @@
         public function getServiciosPorEmpleado($dni)
         {
             try {
-                $sql = "SELECT * FROM PERRO_RECI WHERE Dni = '" . $dni . "'";
+                $sql = "SELECT * FROM PERRO_RECIBE_SERVICIO WHERE Dni = '" . $dni . "'";
                 $sentencia = $this->conexion->prepare($sql);
                 $sentencia->execute();
                 $perro_recibe_servicio = $sentencia->fetchAll(PDO::FETCH_ASSOC);

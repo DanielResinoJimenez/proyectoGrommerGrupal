@@ -13,6 +13,12 @@ class PerroRecibeServicio
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
             exit();
         }
+        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+        if ($isAdmin) {
+            header('Location: http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=mostrarServiciosPorPerros');
+            exit();
+        }
+
 ?>
         <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center dark:bg-gray-900 dark:bg-opacity-80">
             <div class="bg-white p-4 rounded shadow-lg w-1/2 dark:bg-gray-800">
@@ -47,7 +53,7 @@ class PerroRecibeServicio
                     <input type="hidden" id="raza" name="empleado_id" value="<?php echo isset($_COOKIE['user']) ? $_COOKIE['user'] : ''; ?>">
                     <div>
                         <label for="peso" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Precio final:</label>
-                        <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2" readonly>
+                        <input required type="number" step=0.01 id="peso" name="precioFinal" class="mt-1 block w-full border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-white rounded-md shadow-sm p-2" >
                         <script>
                             document.getElementById('nombre').addEventListener('change', function() {
                                 var selectedService = this.value;
@@ -91,13 +97,25 @@ class PerroRecibeServicio
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
             exit();
         }
+        // echo $servPorPerro;
+
+        // if(count($servPorPerro) == 0){
+        //     echo "<script>alert('No hay servicios realizados disponibles.');</script>";
+        // }
     ?>
         <!-- Lista de Servicios hechos a los perros -->
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto dark:bg-gray-800">
-            <h2 class="text-xl font-bold mb-2 dark:text-purple-400">Lista de Servicios hechos a los perros</h2>
+            <h2 class="text-xl font-bold text-purple-600 mb-2 dark:text-purple-400">Lista de Servicios hechos a los perros</h2>
+            <?php
+                $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+                if (!$isAdmin) {
+            ?>
             <a href="http://localhost/gromer/front/index.php?controller=perroRecibeServicioUso&action=showFormServ">
                 <button class="bg-green-500 text-white px-4 py-2 rounded m-4 dark:bg-green-700">Insertar un nuevo servicio realizado</button>
             </a>
+            <?php
+                }
+            ?>
             <table class="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>

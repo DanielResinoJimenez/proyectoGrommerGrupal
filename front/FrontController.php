@@ -30,18 +30,13 @@ if (file_exists($controllerFile)) {
 
     // Verifica si la acción existe en el controlador
     if (method_exists($controllerObj, $action)) {
-        // if ($dni !== null) {
-        //     //Si se pasó un DNI, llamamos a la acción con él
-        //     $controllerObj->$action($dni);
-        // } else {
             //Si no hay DNI, llama a la acción sin parámetros
             $controllerObj->$action();
-        // }
     } else {
         // Acción no encontrada, muestra un error
-        echo "La acción '$action' no existe en el controlador '$controller'.";
+        echo "<script>alert('La acción \"$action\" no existe en el controlador \"$controller\".'); window.location.href = 'index.php?controller=homeUso&action=showHome';</script>";
     }
 } else {
     // Controlador no encontrado, muestra un error
-    echo "El controlador '$controller' no existe.";
+    echo "<script>alert('El controlador \'$controller\' no existe.'); window.location.href = 'index.php?controller=homeUso&action=showHome';</script>";
 }

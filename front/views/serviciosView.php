@@ -18,7 +18,7 @@ class ServiciosView
         }
     ?>
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto dark:bg-gray-800">
-            <h2 class="text-xl font-bold mb-2 dark:text-purple-400">Lista de Servicios</h2>
+            <h2 class="text-xl font-bold text-purple-600 mb-2 dark:text-purple-400">Lista de Servicios</h2>
             <?php
                 $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
                 if ($isAdmin) {
