@@ -10,7 +10,7 @@ class ClientesView
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         // $isAdmin = false;
         if (!$isLoggedIn) {
@@ -48,7 +48,7 @@ class ClientesView
                         <input required type="text" id="telefono" value="<?php echo isset($_POST['telefono']) ? $_POST['telefono'] : '' ?>" name="telefono" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                     <div class="flex justify-end">
-                        <a href='http://localhost/gromer/front/index.php?controller=clientesUso&action=showClientes'><button type="button"class="bg-gray-500 text-white px-4 py-2 rounded mr-2 dark:bg-gray-700">Cancelar</button></a>
+                        <a href='http://localhost/gromer/front/index.php?controller=clientesUso&action=showClientes'><button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2 dark:bg-gray-700">Cancelar</button></a>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded dark:bg-blue-700">Crear Cliente</button>
                     </div>
                 </form>
@@ -68,7 +68,7 @@ class ClientesView
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-    
+
         $isLoggedIn = isset($_COOKIE['loggedIn']) && $_COOKIE['loggedIn'] === 'true';
         // $isAdmin = false;
         if (!$isLoggedIn) {
@@ -119,7 +119,7 @@ class ClientesView
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Apellido1']}</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Apellido2']}</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Direccion']}</td>";
-                            echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>" . (isset($cliente['telefono']) ? $cliente['telefono'] : 'N/A') . "</td>";
+                            echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>" . (isset($cliente['Tlfno']) ? $cliente['Tlfno'] : 'N/A') . "</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>";
                             echo "<button type='submit' class='bg-yellow-700 text-white px-4 py-2 rounded mr-2 dark:bg-yellow-600' onclick='window.location.href=\"http://localhost/gromer/front/index.php?controller=perrosUso&action=mostrarPerrosPorCliente&clienteDni={$cliente['Dni']}\"'>Perros</button>";
                             echo "<form method='POST' action='http://localhost/gromer/front/index.php?controller=clientesUso&action=deleteCliente' style='display:inline;'>";
