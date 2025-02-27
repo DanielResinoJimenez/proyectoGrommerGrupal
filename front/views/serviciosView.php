@@ -19,7 +19,14 @@ class ServiciosView
     ?>
         <div class="bg-white p-4 rounded shadow mb-4 overflow-x-auto dark:bg-gray-800">
             <h2 class="text-xl font-bold mb-2 dark:text-purple-400">Lista de Servicios</h2>
-            <a href="http://localhost/gromer/front/index.php?controller=serviciosUso&action=showForm"><button class="bg-green-500 text-white px-4 py-2 rounded m-4 dark:bg-green-700">Crear Servicio</button></a>
+            <?php
+                $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+                if ($isAdmin) {
+            ?>
+                <a href="http://localhost/gromer/front/index.php?controller=serviciosUso&action=showForm"><button class="bg-green-500 text-white px-4 py-2 rounded m-4 dark:bg-green-700">Crear Servicio</button></a>
+            <?php
+                }
+            ?>
             <table class="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
@@ -42,7 +49,10 @@ class ServiciosView
                             echo "<td class='px-4 py-2 whitespace-nowrap dark:text-gray-300'>{$servicio['Descripcion']}</td>";
                             // echo "<form method='POST' action='http://localhost/Proyecto_DWES/api/controllers/clientesController.php?accion=borrar' style='display:inline;'>";
                             // echo "<input type='hidden' name='dni' value='{$cliente['Dni']}'>";
-                            echo "<td class='px-4 py-2 whitespace-nowrap dark:text-gray-300'><a href='http://localhost/gromer/front/index.php?controller=serviciosUso&action=showEditForm&id=" . $servicio['Codigo'] . "&precio=" . $servicio['Precio'] . "' ><button class='bg-red-500 text-white px-4 py-2 rounded'>Editar</button></a></td>";
+                            $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+                            if ($isAdmin) {
+                                echo "<td class='px-4 py-2 whitespace-nowrap dark:text-gray-300'><a href='http://localhost/gromer/front/index.php?controller=serviciosUso&action=showEditForm&id=" . $servicio['Codigo'] . "&precio=" . $servicio['Precio'] . "' ><button class='bg-red-500 text-white px-4 py-2 rounded'>Editar</button></a></td>";
+                            }
                             // echo "</form>";
                             echo "</tr>";
                         }

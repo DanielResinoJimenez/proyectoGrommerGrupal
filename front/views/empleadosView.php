@@ -202,6 +202,12 @@ class EmpleadosView
             header('Location: http://localhost/gromer/front/index.php?controller=clientesUso&action=showLogIn');
             exit();
         }
+        
+        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+        if (!$isAdmin) {
+            header('Location: http://localhost/gromer/front/index.php');
+            exit();
+        }
     ?>
         <!-- Lista de empleados -->
         <div class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-4 overflow-x-auto">

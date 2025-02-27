@@ -51,10 +51,15 @@ class PerroRecibeServicioUso
     //Función mostrar servicios realizados a perros
     public function mostrarServiciosPorPerros()
     {
-
         // URL de la API
         $base_url = 'http://localhost/gromer/api/controllers/perrorecibeservicioController.php?action=listarPerroRecibeServicio';
 
+        $isAdmin = isset($_COOKIE['rol']) && $_COOKIE['rol'] === 'ADMIN';
+        if (!$isAdmin) {
+            $dniEmple = $_COOKIE['user'] ;
+            $base_url = 'http://localhost/gromer/api/controllers/perrorecibeservicioController.php?action=listarServicioPorEmpleado&dni='. $dniEmple;
+        }
+        
         // Construir la URL con los parámetros requeridos
         $get_url = $base_url;
 
