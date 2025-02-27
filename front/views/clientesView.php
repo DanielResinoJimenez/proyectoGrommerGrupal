@@ -119,7 +119,7 @@ class ClientesView
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Apellido1']}</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Apellido2']}</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>{$cliente['Direccion']}</td>";
-                            echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>" . (isset($cliente['telefono']) ? $cliente['telefono'] : 'N/A') . "</td>";
+                            echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>" . (isset($cliente['Tlfno']) ? $cliente['Tlfno'] : 'N/A') . "</td>";
                             echo "<td class='px-4 py-2 text-left whitespace-nowrap dark:text-gray-300'>";
                             echo "<button type='submit' class='bg-yellow-700 text-white px-4 py-2 rounded mr-2 dark:bg-yellow-600' onclick='window.location.href=\"http://localhost/gromer/front/index.php?controller=perrosUso&action=mostrarPerrosPorCliente&clienteDni={$cliente['Dni']}\"'>Perros</button>";
                             echo "<form method='POST' action='http://localhost/gromer/front/index.php?controller=clientesUso&action=deleteCliente' style='display:inline;'>";
